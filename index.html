@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="GAME BUILD — plateforme de formation avec cours vidéo et leçons écrites.">
+  <title>GAME BUILD — Plateforme de formation</title>
+  <style>
+    :root{--bg:#0b1020;--panel:#131c32;--panel2:#1b2945;--ink:#f4f7ff;--muted:#b9c5dc;--accent:#55d6a5;--blue:#78a7ff}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
+    a{color:inherit}.wrap{width:min(1100px,92%);margin:auto}.top{padding:18px 0;border-bottom:1px solid #263451}.nav{display:flex;align-items:center;justify-content:space-between;gap:16px}.brand{font-weight:900;letter-spacing:1.5px;font-size:1.25rem}.brand span{color:var(--accent)}.nav a{text-decoration:none;color:var(--muted);margin-left:18px;font-size:.95rem}
+    .hero{padding:76px 0 60px;background:radial-gradient(ellipse at 80% 10%,#1d3d54 0,transparent 42%)}.tag{display:inline-block;color:var(--accent);border:1px solid #286c5a;border-radius:999px;padding:5px 12px;font-size:.85rem}.hero h1{font-size:clamp(2.3rem,7vw,4.5rem);line-height:1.05;margin:18px 0}.hero p{color:var(--muted);max-width:650px;font-size:1.1rem}.actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:26px}.btn{display:inline-block;padding:12px 18px;border-radius:12px;text-decoration:none;font-weight:750;background:var(--accent);color:#082017}.btn.secondary{background:transparent;color:var(--ink);border:1px solid #52617d}
+    section{padding:48px 0}.section-title{font-size:1.9rem;margin:0 0 8px}.lead{color:var(--muted);margin:0 0 24px}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}.card{background:var(--panel);border:1px solid #293956;border-radius:18px;padding:22px}.card h3{margin:8px 0}.card p{color:var(--muted);margin-bottom:0}.icon{font-size:1.7rem}.price{font-size:2.3rem;font-weight:900;color:var(--accent);margin:6px 0}.price small{font-size:.9rem;color:var(--muted);font-weight:500}.notice{background:#18253c;border-left:4px solid var(--blue);padding:16px 18px;border-radius:10px;color:var(--muted)}
+    footer{padding:28px 0;border-top:1px solid #263451;color:var(--muted);font-size:.9rem}.footer-row{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+    @media(max-width:600px){.nav{align-items:flex-start;flex-direction:column}.nav a{margin:0 14px 0 0}.hero{padding:54px 0 38px}}
+  </style>
+</head>
+<body>
+<header class="top"><div class="wrap nav"><div class="brand">GAME <span>BUILD</span></div><nav aria-label="Navigation"><a href="#formations">Formations</a><a href="#tarif">Tarif</a><a href="#contact">Contact</a></nav></div></header>
+<main>
+  <div class="hero"><div class="wrap"><span class="tag">APPRENDRE • PRATIQUER • PROGRESSER</span><h1>Construis tes compétences avec <span style="color:var(--accent)">GAME BUILD</span>.</h1><p>Une plateforme de formation conçue pour apprendre progressivement grâce aux leçons écrites et aux contenus vidéo.</p><div class="actions"><a class="btn" href="#formations">Découvrir les formations</a><a class="btn secondary" href="#contact">Nous contacter</a></div></div></div>
+  <section id="formations"><div class="wrap"><h2 class="section-title">Nos formations</h2><p class="lead">Deux formats d'apprentissage seront proposés.</p><div class="grid"><article class="card"><div class="icon">📘</div><h3>Leçons écrites</h3><p>Des explications organisées par thèmes, avec des étapes faciles à suivre.</p></article><article class="card"><div class="icon">🎬</div><h3>Leçons vidéo</h3><p>Des contenus vidéo pour accompagner les explications et les démonstrations.</p></article><article class="card"><div class="icon">💬</div><h3>Accompagnement</h3><p>Un espace d'assistance aux apprenants est prévu dans les prochaines étapes du projet.</p></article></div></div></section>
+  <section id="tarif"><div class="wrap"><h2 class="section-title">Tarif de formation</h2><div class="card" style="max-width:520px"><p class="lead" style="margin-bottom:0">Tarif annoncé</p><div class="price">3 500 <small>FCFA</small></div><p>Les modalités d'inscription et de paiement seront ajoutées après la mise en place d'un système sécurisé.</p></div></div></section>
+  <section id="contact"><div class="wrap"><h2 class="section-title">Contact et informations</h2><div class="notice">La plateforme est actuellement en construction. Les inscriptions, les comptes élèves, l'espace administrateur et les paiements ne sont pas encore activés. Revenez bientôt pour découvrir les prochaines fonctionnalités.</div></div></section>
+</main>
+<footer><div class="wrap footer-row"><span>© <span id="year"></span> GAME BUILD</span><span>Plateforme de formation en construction</span></div></footer>
+<script>document.getElementById('year').textContent=new Date().getFullYear();</script>
+</body></html>
