@@ -1,0 +1,704 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GAME BUILD - Formation création de jeux vidéo</title>
+
+<style>
+*{box-sizing:border-box}
+body{
+ margin:0;
+ font-family:Arial,sans-serif;
+ background:#101827;
+ color:#f4f7fb;
+ line-height:1.7;
+}
+header{
+ background:linear-gradient(135deg,#102e59,#087e8b);
+ padding:35px 18px;
+ text-align:center;
+}
+header h1{font-size:30px;margin:0}
+header p{margin-bottom:0}
+main{max-width:900px;margin:auto;padding:18px}
+.intro,.lesson{
+ background:#1c293b;
+ padding:20px;
+ margin:18px 0;
+ border-radius:13px;
+}
+h2{color:#58dfd0}
+h3{color:#ffd166}
+.module{
+ background:#1c293b;
+ margin:20px 0;
+ padding:18px;
+ border-radius:13px;
+ border:1px solid #34465c;
+}
+.module summary{
+ cursor:pointer;
+ color:#70e5d6;
+ font-size:18px;
+ font-weight:bold;
+}
+.module details{margin-top:15px}
+.video{
+ position:relative;
+ width:100%;
+ aspect-ratio:16/9;
+ margin:15px 0;
+ background:#000;
+ border-radius:10px;
+ overflow:hidden;
+}
+.video iframe{
+ position:absolute;
+ width:100%;
+ height:100%;
+ border:0;
+ left:0;
+ top:0;
+}
+.example{
+ background:#142f3b;
+ border-left:4px solid #55d9c8;
+ padding:13px;
+ margin:12px 0;
+ border-radius:6px;
+}
+.practice{
+ background:#29364a;
+ padding:14px;
+ border-radius:8px;
+ margin-top:12px;
+}
+a{color:#70e5d6}
+button{
+ background:#087e8b;
+ color:white;
+ border:0;
+ border-radius:7px;
+ padding:12px;
+}
+footer{
+ text-align:center;
+ padding:25px;
+ color:#b8c5d5;
+}
+.small{font-size:13px;color:#c0cad8}
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>GAME BUILD</h1>
+<p>Formation complète : créer son propre jeu vidéo avec GDevelop</p>
+<p>Apprendre - Pratiquer - Créer - Publier</p>
+</header>
+
+<main>
+
+<section class="intro">
+<h2>Bienvenue dans la formation GAME BUILD</h2>
+
+<p>
+Bienvenue dans cette formation consacrée à la création de jeux vidéo.
+Tu vas apprendre progressivement à créer ton propre jeu, même si tu
+n'as jamais utilisé un logiciel de création de jeux.
+</p>
+
+<p>
+Nous allons utiliser <strong>GDevelop</strong>, un logiciel qui permet
+de créer des jeux grâce à des objets, des événements et des règles
+visuelles.
+</p>
+
+<p>
+Chaque module contient une leçon, une vidéo de démonstration, une
+activité pratique et un exercice corrigé.
+</p>
+
+<p><strong>Projet final :</strong> créer un jeu de plateforme dans lequel
+un personnage se déplace, évite des obstacles et ramasse des objets.
+</p>
+
+<p>
+<a href="https://gdevelop.io/fr-fr" target="_blank" rel="noopener">
+Découvrir le site officiel de GDevelop
+</a>
+</p>
+</section>
+
+<!-- MODULE 1 -->
+<section class="module">
+<details open>
+<summary>MODULE 1 : Découvrir la création de jeux vidéo</summary>
+
+<h3>Leçon 1 : Comprendre un jeu vidéo</h3>
+<p>
+Un jeu vidéo est un programme interactif. Le joueur peut contrôler
+un personnage, déplacer des objets, accomplir des missions et obtenir
+des résultats.
+</p>
+
+<p>Il existe plusieurs catégories de jeux :</p>
+<ul>
+<li>Jeux de plateforme.</li>
+<li>Jeux de course.</li>
+<li>Jeux de réflexion.</li>
+<li>Jeux d'aventure.</li>
+<li>Jeux de simulation.</li>
+</ul>
+
+<h3>Leçon 2 : Les éléments d'un jeu</h3>
+<ul>
+<li>Le personnage principal.</li>
+<li>Le décor et l'environnement.</li>
+<li>Les commandes du joueur.</li>
+<li>Les règles et les objectifs.</li>
+<li>Les obstacles et les récompenses.</li>
+</ul>
+
+<h3>Vidéo de démonstration</h3>
+<div class="video">
+<iframe src="https://www.youtube.com/embed/yfZkbkToFfg"
+title="GDevelop : guide pour débutant"
+allowfullscreen loading="lazy"></iframe>
+</div>
+
+<div class="practice">
+<h3>Pratique</h3>
+<p>
+Observe la vidéo. Identifie les différentes parties de l'interface
+et note les éléments que tu souhaites retrouver dans ton propre jeu.
+</p>
+</div>
+
+<h3>Exercice corrigé</h3>
+<p><strong>Question :</strong> Cite quatre éléments d'un jeu vidéo.</p>
+<p><strong>Correction :</strong> Un personnage, un décor, des commandes
+et un objectif.</p>
+
+</details>
+</section>
+
+<!-- MODULE 2 -->
+<section class="module">
+<details>
+<summary>MODULE 2 : Installer et découvrir GDevelop</summary>
+
+<h3>Leçon 1 : Présentation du logiciel</h3>
+<p>
+GDevelop est un outil de création de jeux. Il permet de construire
+un projet avec des scènes, des objets et des événements.
+</p>
+
+<h3>Leçon 2 : Accéder à GDevelop</h3>
+<p>
+Pour commencer, ouvre le site officiel et découvre l'éditeur.
+Tu peux également utiliser la version en ligne si ton appareil
+et ton navigateur le permettent.
+</p>
+
+<p>
+<a href="https://editor.gdevelop.io/" target="_blank" rel="noopener">
+Ouvrir l'éditeur GDevelop
+</a>
+</p>
+
+<h3>Vidéo de démonstration</h3>
+<div class="video">
+<iframe src="https://www.youtube.com/embed/L9ybto94XSU"
+title="Découvrir les objets dans GDevelop"
+allowfullscreen loading="lazy"></iframe>
+</div>
+
+<div class="practice">
+<h3>Pratique</h3>
+<ol>
+<li>Ouvre GDevelop.</li>
+<li>Découvre la page d'accueil.</li>
+<li>Repère les modèles de projets.</li>
+<li>Observe comment créer un nouveau projet.</li>
+</ol>
+</div>
+
+<h3>Exercice corrigé</h3>
+<p><strong>Question :</strong> À quoi sert GDevelop ?</p>
+<p><strong>Correction :</strong> À créer des jeux vidéo à l'aide
+d'outils visuels et d'événements.</p>
+
+</details>
+</section>
+
+<!-- MODULE 3 -->
+<section class="module">
+<details>
+<summary>MODULE 3 : Créer son premier projet et ses scènes</summary>
+
+<h3>Leçon 1 : Comprendre un projet</h3>
+<p>
+Un projet est l'ensemble des éléments qui composent ton jeu :
+les scènes, les personnages, les images, les sons et les règles.
+</p>
+
+<h3>Leçon 2 : Comprendre les scènes</h3>
+<p>
+Une scène représente une partie du jeu. Par exemple :
+l'écran d'accueil, le premier niveau ou l'écran de fin.
+</p>
+
+<h3>Leçon 3 : Préparer son premier niveau</h3>
+<p>
+Commence par un niveau simple. Choisis un décor, prépare l'espace
+où le personnage va se déplacer et réfléchis à l'objectif du joueur.
+</p>
+
+<h3>Vidéo de démonstration</h3>
+<div class="video">
+<iframe src="https://www.youtube.com/embed/yfZkbkToFfg"
+title="Créer un premier jeu avec GDevelop"
+allowfullscreen loading="lazy"></iframe>
+</div>
+
+<div class="practice">
+<h3>Pratique</h3>
+<p>
+Crée un nouveau projet et prépare une scène qui servira de premier
+niveau à ton jeu.
+</p>
+</div>
+
+<h3>Exercice corrigé</h3>
+<p><strong>Question :</strong> Qu'est-ce qu'une scène ?</p>
+<p><strong>Correction :</strong> C'est une partie du jeu qui contient
+les objets et les éléments nécessaires à son fonctionnement.</p>
+
+</details>
+</section>
+
+<!-- MODULE 4 -->
+<section class="module">
+<details>
+<summary>MODULE 4 : Ajouter un personnage et des objets</summary>
+
+<h3>Leçon 1 : Comprendre les objets</h3>
+<p>
+Les objets sont les éléments que tu ajoutes dans ton jeu :
+personnages, pièces, plateformes, boutons et décorations.
+</p>
+
+<h3>Leçon 2 : Ajouter un personnage</h3>
+<p>
+Prépare une image de personnage. Ajoute-la dans ton projet comme
+objet, puis place-la dans la scène.
+</p>
+
+<h3>Leçon 3 : Ajouter un décor</h3>
+<p>
+Le décor permet de construire l'environnement du jeu. Il peut
+représenter une ville, une forêt, une route ou un espace imaginaire.
+</p>
+
+<h3>Vidéo de démonstration</h3>
+<div class="video">
+<iframe src="https://www.youtube.com/embed/L9ybto94XSU"
+title="Les objets dans GDevelop"
+allowfullscreen loading="lazy"></iframe>
+</div>
+
+<div class="practice">
+<h3>Pratique</h3>
+<ol>
+<li>Ajoute un personnage.</li>
+<li>Ajoute un décor.</li>
+<li>Place le personnage dans la scène.</li>
+<li>Enregistre ton projet.</li>
+</ol>
+</div>
+
+<h3>Exercice corrigé</h3>
+<p><strong>Question :</strong> Donne trois exemples d'objets.</p>
+<p><strong>Correction :</strong> Un personnage, une pièce et une plateforme.</p>
+
+</details>
+</section>
+
+<!-- MODULE 5 -->
+<section class="module">
+<details>
+<summary>MODULE 5 : Créer les mouvements et les commandes</summary>
+
+<h3>Leçon 1 : Comprendre les mouvements</h3>
+<p>
+Le joueur doit pouvoir contrôler son personnage. Selon le type
+de jeu, il pourra marcher, courir, sauter ou se déplacer dans
+plusieurs directions.
+</p>
+
+<h3>Leçon 2 : Les comportements</h3>
+<p>
+GDevelop propose des comportements qui facilitent certaines actions.
+Par exemple, le comportement de plateforme permet de gérer
+les déplacements et les sauts d'un personnage.
+</p>
+
+<h3>Leçon 3 : Les événements</h3>
+<p>
+Les événements permettent de définir des conditions et des actions.
+</p>
+
+<div class="example">
+<strong>Exemple :</strong><br>
+Condition : le joueur appuie sur une commande.<br>
+Action : le personnage se déplace.
+</div>
+
+<h3>Vidéo de démonstration</h3>
+<div class="video">
+<iframe src="https://www.youtube.com/embed/VcOiDHpWgnE"
+title="Créer un jeu de plateforme avec GDevelop"
+allowfullscreen loading="lazy"></iframe>
+</div>
+
+<div class="practice">
+<h3>Pratique</h3>
+<p>
+Ajoute un comportement de déplacement à ton personnage et teste
+ses mouvements dans l'aperçu du jeu.
+</p>
+</div>
+
+<h3>Exercice corrigé</h3>
+<p><strong>Question :</strong> À quoi servent les commandes ?</p>
+<p><strong>Correction :</strong> Elles permettent au joueur de contrôler
+les actions et les déplacements du personnage.</p>
+
+</details>
+</section>
+
+<!-- MODULE 6 -->
+<section class="module">
+<details>
+<summary>MODULE 6 : Ajouter les animations, les points et les sons</summary>
+
+<h3>Leçon 1 : Les animations</h3>
+<p>
+Une animation permet de donner du mouvement visuel à un personnage.
+Par exemple, une animation peut représenter la marche, le saut
+ou une action particulière.
+</p>
+
+<h3>Leçon 2 : Le système de points</h3>
+<p>
+Tu peux ajouter un compteur pour montrer le nombre de points
+obtenus par le joueur.
+</p>
+
+<h3>Leçon 3 : Les sons</h3>
+<p>
+Les sons peuvent accompagner les actions du joueur : ramasser
+un objet, terminer un niveau ou appuyer sur un bouton.
+</p>
+
+<h3>Vidéo de démonstration</h3>
+<div class="video">
+<iframe src="https://www.youtube.com/embed/UJsqjvwFFB4"
+title="Utiliser les animations dans GDevelop"
+allowfullscreen loading="lazy"></iframe>
+</div>
+
+<div class="practice">
+<h3>Pratique</h3>
+<p>
+Ajoute une animation à ton personnage. Prépare un objet à ramasser
+et réfléchis à la manière de compter les points.
+</p>
+</div>
+
+<h3>Exercice corrigé</h3>
+<p><strong>Question :</strong> Pourquoi ajouter des animations ?</p>
+<p><strong>Correction :</strong> Pour rendre les personnages et les
+actions plus vivants et compréhensibles.</p>
+
+</details>
+</section>
+
+<!-- MODULE 7 -->
+<section class="module">
+<details>
+<summary>MODULE 7 : Adapter son jeu aux téléphones</summary>
+
+<h3>Leçon 1 : Comprendre les commandes tactiles</h3>
+<p>
+Un jeu destiné aux téléphones doit proposer des commandes adaptées
+à l'écran tactile.
+</p>
+
+<h3>Leçon 2 : Préparer les boutons</h3>
+<p>
+Tu peux ajouter des boutons de déplacement ou un joystick virtuel
+pour permettre au joueur de contrôler son personnage avec ses doigts.
+</p>
+
+<h3>Leçon 3 : Tester sur plusieurs écrans</h3>
+<p>
+Vérifie que les boutons restent visibles et que les éléments du jeu
+ne sortent pas de l'écran.
+</p>
+
+<h3>Vidéo de démonstration</h3>
+<div class="video">
+<iframe src="https://www.youtube.com/embed/zpi4LIUXt0E"
+title="Utiliser les commandes tactiles dans GDevelop"
+allowfullscreen loading="lazy"></iframe>
+</div>
+
+<div class="practice">
+<h3>Pratique</h3>
+<p>
+Prépare des commandes tactiles et teste leur fonctionnement
+dans l'aperçu de ton jeu.
+</p>
+</div>
+
+<h3>Exercice corrigé</h3>
+<p><strong>Question :</strong> Pourquoi adapter les commandes aux téléphones ?</p>
+<p><strong>Correction :</strong> Pour permettre aux joueurs d'utiliser
+facilement leur écran tactile.</p>
+
+</details>
+</section>
+
+<!-- MODULE 8 -->
+<section class="module">
+<details>
+<summary>MODULE 8 : Tester et corriger son jeu</summary>
+
+<h3>Leçon 1 : Pourquoi tester ?</h3>
+<p>
+Un jeu doit être testé régulièrement. Cela permet de vérifier
+les commandes, les mouvements, les règles et les objectifs.
+</p>
+
+<h3>Leçon 2 : Identifier les problèmes</h3>
+<p>
+Observe les problèmes rencontrés pendant le test :
+personnage bloqué, objet qui disparaît mal, compteur incorrect
+ou niveau qui ne se termine pas.
+</p>
+
+<h3>Leçon 3 : Corriger et améliorer</h3>
+<p>
+Reprends les paramètres et les événements concernés, puis relance
+l'aperçu pour vérifier la correction.
+</p>
+
+<h3>Vidéo de démonstration</h3>
+<div class="video">
+<iframe src="https://www.youtube.com/embed/K1yQUUmZJ2U"
+title="Corriger les bugs dans GDevelop"
+allowfullscreen loading="lazy"></iframe>
+</div>
+
+<div class="practice">
+<h3>Pratique</h3>
+<p>
+Teste ton jeu du début à la fin. Note les problèmes rencontrés
+et corrige-les un par un.
+</p>
+</div>
+
+<h3>Exercice corrigé</h3>
+<p><strong>Question :</strong> Que faut-il faire lorsqu'un événement
+ne fonctionne pas comme prévu ?</p>
+<p><strong>Correction :</strong> Vérifier ses conditions, ses actions
+et refaire un test.</p>
+
+</details>
+</section>
+
+<!-- MODULE 9 -->
+<section class="module">
+<details>
+<summary>MODULE 9 : Exporter et publier son jeu</summary>
+
+<h3>Leçon 1 : Comprendre l'exportation</h3>
+<p>
+L'exportation consiste à préparer le jeu dans un format adapté
+à sa destination : navigateur, ordinateur ou téléphone.
+</p>
+
+<h3>Leçon 2 : Préparer son jeu</h3>
+<ul>
+<li>Vérifier le nom du jeu.</li>
+<li>Préparer une image de présentation.</li>
+<li>Tester les commandes.</li>
+<li>Vérifier les niveaux.</li>
+<li>Corriger les erreurs importantes.</li>
+</ul>
+
+<h3>Leçon 3 : Publier son projet</h3>
+<p>
+Choisis une plateforme adaptée à ton projet et lis ses conditions
+avant de publier ton jeu.
+</p>
+
+<p>
+<a href="https://gd.games/" target="_blank" rel="noopener">
+Découvrir gd.games
+</a>
+</p>
+
+<h3>Vidéo de démonstration</h3>
+<div class="video">
+<iframe src="https://www.youtube.com/embed/AC7iGC8pAmU"
+title="Exporter un jeu créé avec GDevelop"
+allowfullscreen loading="lazy"></iframe>
+</div>
+
+<div class="practice">
+<h3>Pratique</h3>
+<p>
+Prépare ton projet pour l'exportation. Vérifie les paramètres
+et teste le résultat avant de le partager.
+</p>
+</div>
+
+<h3>Exercice corrigé</h3>
+<p><strong>Question :</strong> Pourquoi faut-il tester un jeu avant
+de le publier ?</p>
+<p><strong>Correction :</strong> Pour vérifier qu'il fonctionne
+correctement sur le support choisi.</p>
+
+</details>
+</section>
+
+<!-- MODULE 10 -->
+<section class="module">
+<details>
+<summary>MODULE 10 : Comprendre les publicités et Google AdSense</summary>
+
+<h3>Leçon 1 : Comprendre la publicité en ligne</h3>
+<p>
+La publicité en ligne permet à certains sites et services de présenter
+des annonces à leurs visiteurs.
+</p>
+
+<h3>Leçon 2 : Qu'est-ce que Google AdSense ?</h3>
+<p>
+Google AdSense est un service qui permet aux éditeurs de sites
+admis au programme d'afficher des annonces publicitaires sur
+certaines pages de leur site.
+</p>
+
+<p>
+L'acceptation n'est pas automatique. Le site doit respecter les
+règles de Google et proposer un contenu original et utile.
+</p>
+
+<h3>Leçon 3 : Comprendre AdSense et AdMob</h3>
+<p>
+AdSense concerne principalement la publicité sur les sites web.
+AdMob est destiné à la publicité dans les applications mobiles.
+Ce sont deux services différents.
+</p>
+
+<h3>Leçon 4 : Les règles à respecter</h3>
+<ul>
+<li>Ne jamais demander aux visiteurs de cliquer sur les annonces.</li>
+<li>Ne jamais cliquer soi-même sur ses propres annonces.</li>
+<li>Ne pas présenter de fausses informations pour attirer les clics.</li>
+<li>Proposer un contenu utile et original.</li>
+<li>Respecter les règles publicitaires et les règles de confidentialité.</li>
+</ul>
+
+<div class="example">
+<strong>Exemple :</strong><br>
+GAME BUILD peut proposer des leçons originales, des exercices
+et des démonstrations. Une demande d'adhésion à AdSense ne garantit
+pas l'acceptation ni des revenus.
+</div>
+
+<h3>Vidéo de démonstration</h3>
+<div class="video">
+<iframe src="https://www.youtube.com/embed/rQH7MF2Hre0"
+title="Comprendre la monétisation avec GDevelop"
+allowfullscreen loading="lazy"></iframe>
+</div>
+
+<p class="small">
+Cette vidéo présente la monétisation d'un jeu vidéo. Elle ne constitue
+pas un tutoriel d'installation de Google AdSense sur un site web.
+</p>
+
+<h3>Ressources officielles</h3>
+<p>
+<a href="https://support.google.com/adsense/"
+target="_blank" rel="noopener">Centre d'aide Google AdSense</a>
+</p>
+<p>
+<a href="https://support.google.com/adsense/answer/48182"
+target="_blank" rel="noopener">Règles du programme AdSense</a>
+</p>
+
+<div class="practice">
+<h3>Pratique</h3>
+<p>
+Fais la différence entre AdSense et AdMob. Identifie les règles
+publicitaires à respecter avant de présenter une demande d'inscription.
+</p>
+</div>
+
+<h3>Exercice corrigé</h3>
+<p><strong>Question :</strong> Est-il autorisé de demander aux visiteurs
+de cliquer sur les annonces ?</p>
+<p><strong>Correction :</strong> Non. Les clics doivent être naturels
+et ne doivent pas être encouragés artificiellement.</p>
+
+</details>
+</section>
+
+<!-- PROJET FINAL -->
+<section class="intro">
+<h2>PROJET FINAL : Créer ton premier jeu</h2>
+
+<p>
+Pour terminer la formation, chaque élève devra préparer un petit
+jeu de plateforme avec :
+</p>
+
+<ul>
+<li>Un écran d'accueil.</li>
+<li>Un personnage principal.</li>
+<li>Un décor.</li>
+<li>Des commandes.</li>
+<li>Des obstacles.</li>
+<li>Des objets à ramasser.</li>
+<li>Un compteur de points.</li>
+<li>Un écran de fin.</li>
+</ul>
+
+<h3>Évaluation finale</h3>
+<p>
+L'élève devra présenter son jeu, expliquer les règles, montrer
+les commandes et faire une démonstration du fonctionnement.
+</p>
+
+<p><strong>Félicitations pour avoir terminé cette formation !</strong></p>
+<p>GAME BUILD : apprendre, créer et progresser.</p>
+</section>
+
+</main>
+
+<footer>
+<p>© GAME BUILD - Tous droits réservés</p>
+<p>Formation à la création de jeux vidéo</p>
+</footer>
+
+</body>
+</html>
