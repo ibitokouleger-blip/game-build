@@ -1,386 +1,778 @@
 
-<!doctype html>
+<!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="GAME BUILD : formations en élevage, agriculture et création de jeux vidéo.">
-  <title>GAME BUILD — Centre de formation</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0b1020">
+<title>GAME BUILD - Formations</title>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-  <style>
-    :root {
-      --bg:#0b1020;
-      --panel:#131c32;
-      --ink:#f4f7ff;
-      --muted:#b9c5dc;
-      --accent:#55d6a5;
-      --blue:#78a7ff;
-    }
-
-    * { box-sizing:border-box; }
-    html { scroll-behavior:smooth; }
-
-    body {
-      margin:0;
-      background:var(--bg);
-      color:var(--ink);
-      font:16px/1.6 system-ui,Arial,sans-serif;
-    }
-
-    a { color:inherit; }
-    .wrap { width:min(1100px,92%); margin:auto; }
-
-    .top {
-      padding:18px 0;
-      border-bottom:1px solid #263451;
-    }
-
-    .nav {
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:16px;
-    }
-
-    .brand {
-      font-weight:900;
-      letter-spacing:1.5px;
-      font-size:1.4rem;
-    }
-
-    .brand span { color:var(--accent); }
-
-    .nav a {
-      text-decoration:none;
-      color:var(--muted);
-      margin-left:15px;
-    }
-
-    .hero {
-      padding:75px 0 60px;
-      background:radial-gradient(ellipse at 80% 10%,#1d3d54 0,transparent 42%);
-    }
-
-    .tag {
-      display:inline-block;
-      color:var(--accent);
-      border:1px solid #286c5a;
-      border-radius:999px;
-      padding:5px 12px;
-      font-size:.85rem;
-    }
-
-    h1 {
-      font-size:clamp(2.3rem,7vw,4.5rem);
-      line-height:1.1;
-      margin:18px 0;
-    }
-
-    .hero p {
-      color:var(--muted);
-      max-width:700px;
-      font-size:1.1rem;
-    }
-
-    .actions {
-      display:flex;
-      flex-wrap:wrap;
-      gap:12px;
-      margin-top:26px;
-    }
-
-    .btn {
-      display:inline-block;
-      padding:12px 18px;
-      border-radius:12px;
-      text-decoration:none;
-      font-weight:750;
-      background:var(--accent);
-      color:#082017;
-    }
-
-    .btn.secondary {
-      background:transparent;
-      color:var(--ink);
-      border:1px solid #52617d;
-    }
-
-    section { padding:48px 0; }
-
-    .section-title {
-      font-size:1.9rem;
-      margin:0 0 8px;
-    }
-
-    .lead {
-      color:var(--muted);
-      margin:0 0 24px;
-    }
-
-    .grid {
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
-      gap:16px;
-    }
-
-    .card {
-      background:var(--panel);
-      border:1px solid #293956;
-      border-radius:18px;
-      padding:22px;
-    }
-
-    .card h3 { margin:8px 0; }
-    .card p { color:var(--muted); }
-
-    .icon { font-size:2rem; }
-
-    .price {
-      font-size:2.3rem;
-      font-weight:900;
-      color:var(--accent);
-      margin:6px 0;
-    }
-
-    .price small {
-      font-size:.9rem;
-      color:var(--muted);
-      font-weight:500;
-    }
-
-    .notice {
-      background:#18253c;
-      border-left:4px solid var(--blue);
-      padding:16px 18px;
-      border-radius:10px;
-      color:var(--muted);
-    }
-
-    .contact-link {
-      color:var(--accent);
-      font-weight:bold;
-      overflow-wrap:anywhere;
-    }
-
-    footer {
-      padding:28px 0;
-      border-top:1px solid #263451;
-      color:var(--muted);
-      font-size:.9rem;
-    }
-
-    .footer-row {
-      display:flex;
-      justify-content:space-between;
-      gap:16px;
-      flex-wrap:wrap;
-    }
-
-    @media(max-width:600px) {
-      .nav {
-        align-items:flex-start;
-        flex-direction:column;
-      }
-
-      .nav a { margin:0 12px 0 0; }
-      .hero { padding:50px 0 38px; }
-    }
-  </style>
+<style>
+:root {
+  --bg:#0b1020;
+  --panel:#131c32;
+  --green:#55d6a5;
+  --blue:#6ca9ff;
+  --text:#f4f7ff;
+  --muted:#aab6ca;
+  --border:#293650;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;background:var(--bg);color:var(--text);
+  font-family:Arial,sans-serif;line-height:1.6
+}
+header{
+  padding:18px 6%;display:flex;justify-content:space-between;
+  align-items:center;flex-wrap:wrap;gap:12px;
+  border-bottom:1px solid var(--border)
+}
+.logo{font-size:25px;font-weight:bold;color:var(--green)}
+nav{display:flex;gap:15px;flex-wrap:wrap}
+a{color:var(--green);text-decoration:none}
+main{max-width:1100px;margin:auto;padding:22px 16px}
+.hero{
+  padding:50px 22px;text-align:center;
+  background:linear-gradient(135deg,#172744,#102c2b);
+  border-radius:18px;margin:20px 0 35px
+}
+h1{font-size:clamp(30px,6vw,46px);line-height:1.2}
+h2{color:var(--green)}
+p{color:var(--muted)}
+.grid{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+  gap:16px
+}
+.card,.panel{
+  background:var(--panel);border:1px solid var(--border);
+  border-radius:14px;padding:20px;margin-bottom:17px
+}
+.price{font-size:24px;color:var(--green);font-weight:bold}
+button{
+  border:0;border-radius:8px;padding:12px 17px;
+  background:var(--green);color:#092018;
+  font-weight:bold;cursor:pointer;margin:5px 3px
+}
+button.secondary{background:#263854;color:white}
+button.danger{background:#a83e50;color:white}
+button:disabled{opacity:.5;cursor:not-allowed}
+input,select,textarea{
+  width:100%;padding:12px;margin:7px 0 14px;
+  border-radius:8px;border:1px solid var(--border);
+  background:#0c1528;color:white;font-size:15px
+}
+label{font-size:14px;color:var(--muted)}
+.hidden{display:none!important}
+.notice{
+  padding:13px;border-radius:9px;margin:12px 0;
+  background:#172744;color:#dceaff
+}
+.success{background:#123a30;color:#a9f2d4}
+.error{background:#48232c;color:#ffd1d1}
+.item{padding:14px;border-bottom:1px solid var(--border)}
+.small{font-size:13px;color:var(--muted)}
+footer{
+  text-align:center;padding:30px;
+  border-top:1px solid var(--border);margin-top:35px
+}
+hr{border:0;border-top:1px solid var(--border);margin:25px 0}
+</style>
 </head>
 
 <body>
 
-<header class="top">
-  <div class="wrap nav">
-    <div class="brand">GAME <span>BUILD</span></div>
-    <nav aria-label="Navigation">
-      <a href="#formations">Formations</a>
-      <a href="#tarif">Tarif</a>
-      <a href="#contact">Contact</a>
-    </nav>
-  </div>
+<header>
+  <div class="logo">GAME BUILD</div>
+  <nav>
+    <a href="#formations">Formations</a>
+    <a href="#compte">Compte</a>
+    <a href="#espace">Mon espace</a>
+  </nav>
 </header>
 
 <main>
 
-  <div class="hero">
-    <div class="wrap">
-      <span class="tag">APPRENDRE • PRATIQUER • PROGRESSER</span>
+<section class="hero">
+  <h1>Bienvenue sur GAME BUILD</h1>
+  <p>Apprends, développe tes compétences et construis ton avenir.</p>
+  <a href="#formations"><button>Découvrir nos formations</button></a>
+</section>
 
-      <h1>
-        Bienvenue chez
-        <span style="color:var(--accent)">GAME BUILD !</span>
-      </h1>
+<section id="formations">
+  <h2>Nos formations</h2>
+  <div id="formationsListe" class="grid">
+    <p>Chargement des formations...</p>
+  </div>
+</section>
 
-      <p>
-        Nous sommes heureux de vous accueillir sur notre plateforme
-        de formation. Découvrez de nouvelles connaissances, développez
-        vos compétences et préparez vos projets d'avenir.
-      </p>
+<section id="compte" class="panel">
+  <h2>Créer un compte élève</h2>
+  <p>Inscris-toi pour accéder à nos formations.</p>
 
-      <p>
-        Que vous soyez passionné par l'élevage, l'agriculture ou
-        la création de jeux vidéo, GAME BUILD vous accompagne
-        dans votre apprentissage.
-      </p>
+  <form id="signupForm">
+    <label>Nom complet</label>
+    <input id="signupNom" required minlength="2" placeholder="Ton nom complet">
 
-      <div class="actions">
-        <a class="btn" href="#formations">Découvrir nos formations</a>
-        <a class="btn secondary" href="#contact">Nous contacter</a>
-      </div>
-    </div>
+    <label>Téléphone</label>
+    <input id="signupTelephone" required placeholder="Ton numéro de téléphone">
+
+    <label>Adresse e-mail</label>
+    <input id="signupEmail" type="email" required placeholder="Ton adresse e-mail">
+
+    <label>Mot de passe</label>
+    <input id="signupPassword" type="password" minlength="8" required placeholder="8 caractères minimum">
+
+    <button type="submit">Créer mon compte</button>
+  </form>
+
+  <hr>
+
+  <h2>Connexion</h2>
+  <form id="loginForm">
+    <label>Adresse e-mail</label>
+    <input id="loginEmail" type="email" required>
+
+    <label>Mot de passe</label>
+    <input id="loginPassword" type="password" required>
+
+    <button type="submit">Me connecter</button>
+  </form>
+
+  <div id="authMessage" class="notice hidden"></div>
+  <button id="logoutBtn" class="secondary hidden">Déconnexion</button>
+</section>
+
+<section id="espace" class="hidden">
+  <div class="panel">
+    <h2>Mon espace élève</h2>
+    <p id="welcome"></p>
+
+    <h3>Choisir une formation</h3>
+    <form id="enrollForm">
+      <label>Formation</label>
+      <select id="formationChoisie" required></select>
+      <button type="submit">M'inscrire</button>
+    </form>
+    <div id="enrollMessage" class="notice hidden"></div>
   </div>
 
-  <section id="formations">
-    <div class="wrap">
-      <h2 class="section-title">Nos domaines de formation</h2>
-      <p class="lead">
-        Choisissez votre domaine et développez vos connaissances
-        étape par étape.
-      </p>
+  <div class="panel">
+    <h2>Mes inscriptions</h2>
+    <div id="mesInscriptions">Chargement...</div>
+  </div>
 
-      <div class="grid">
+  <div class="panel">
+    <h2>Mes paiements</h2>
+    <div id="mesPaiements">Chargement...</div>
+  </div>
 
-        <article class="card">
-          <div class="icon">🐓</div>
-          <h3>1. Formation en élevage</h3>
-          <p>
-            Découvrez les bases de l'élevage, les soins aux animaux,
-            leur alimentation, leur habitat et les bonnes pratiques
-            pour bien gérer une activité d'élevage.
-          </p>
-        </article>
+  <div class="panel">
+    <h2>Mes cours</h2>
+    <p>Les cours sont accessibles après validation de ton paiement par l'administrateur.</p>
+    <div id="mesCours"></div>
+  </div>
+</section>
 
-        <article class="card">
-          <div class="icon">🌱</div>
-          <h3>2. Formation en agriculture</h3>
-          <p>
-            Découvrez les bases des activités agricoles,
-            les cultures, les techniques de production
-            et l'organisation d'un projet agricole.
-          </p>
-        </article>
+<section id="adminSection" class="hidden">
+  <div class="panel">
+    <h2>Administration GAME BUILD</h2>
+    <p>Bienvenue dans ton espace administrateur.</p>
 
-        <article class="card">
-          <div class="icon">🎮</div>
-          <h3>3. Création de jeux vidéo</h3>
-          <p>
-            Apprenez à imaginer, concevoir et créer vos propres
-            jeux vidéo sans avoir besoin de maîtriser
-            la programmation.
-          </p>
-        </article>
+    <h3>Inscriptions des élèves</h3>
+    <div id="adminInscriptions">Chargement...</div>
 
-      </div>
-    </div>
-  </section>
+    <hr>
 
-  <section id="apprentissage">
-    <div class="wrap">
-      <h2 class="section-title">Nos méthodes d'apprentissage</h2>
-      <p class="lead">
-        Des supports variés pour faciliter votre formation.
-      </p>
+    <h3>Demandes de paiement</h3>
+    <p class="small">
+      Vérifie d'abord la réception réelle de l'argent sur ton compte MTN ou Moov.
+      Ne confirme jamais un paiement simplement sur la déclaration d'un élève.
+    </p>
+    <div id="adminPaiements">Chargement...</div>
+  </div>
 
-      <div class="grid">
+  <div class="panel">
+    <h2>Ajouter une leçon</h2>
+    <form id="coursForm">
+      <label>Formation</label>
+      <select id="coursFormation" required></select>
 
-        <article class="card">
-          <div class="icon">📘</div>
-          <h3>Leçons écrites</h3>
-          <p>
-            Des explications organisées par thèmes,
-            avec des étapes faciles à suivre.
-          </p>
-        </article>
+      <label>Titre de la leçon</label>
+      <input id="coursTitre" required placeholder="Titre de la leçon">
 
-        <article class="card">
-          <div class="icon">🎬</div>
-          <h3>Leçons vidéo</h3>
-          <p>
-            Des vidéos pour accompagner les explications
-            et les démonstrations.
-          </p>
-        </article>
+      <label>Contenu détaillé de la leçon</label>
+      <textarea id="coursContenu" rows="8" required placeholder="Écris ici le contenu du cours..."></textarea>
 
-        <article class="card">
-          <div class="icon">💬</div>
-          <h3>Accompagnement</h3>
-          <p>
-            Un accompagnement pédagogique et des réponses
-            aux questions des apprenants sont prévus.
-          </p>
-        </article>
+      <label>Ordre de la leçon</label>
+      <input id="coursOrdre" type="number" min="1" value="1" required>
 
-      </div>
-    </div>
-  </section>
-
-  <section id="tarif">
-    <div class="wrap">
-      <h2 class="section-title">Tarif de formation</h2>
-
-      <div class="card" style="max-width:520px">
-        <p class="lead">Tarif annoncé</p>
-        <div class="price">3 500 <small>FCFA</small></div>
-        <p>
-          Les modalités d'inscription et de paiement seront
-          communiquées après la mise en place du système sécurisé.
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <section id="contact">
-    <div class="wrap">
-      <h2 class="section-title">Contact et informations</h2>
-
-      <div class="card">
-        <h3>Une question ? Écrivez-nous !</h3>
-
-        <p>
-          Pour toute information concernant nos formations,
-          contactez l'équipe GAME BUILD par e-mail.
-        </p>
-
-        <p>
-          Adresse :
-          <a class="contact-link"
-             href="mailto:ibitokouleger@gmail.com?subject=Contact%20GAME%20BUILD">
-            ibitokouleger@gmail.com
-          </a>
-        </p>
-
-        <div class="actions">
-          <a class="btn"
-             href="mailto:ibitokouleger@gmail.com?subject=Contact%20GAME%20BUILD">
-            ✉️ Nous écrire par e-mail
-          </a>
-        </div>
-      </div>
-
-      <p class="notice" style="margin-top:18px">
-        GAME BUILD est actuellement en construction.
-        Certaines fonctionnalités, notamment les inscriptions,
-        les paiements et les espaces élèves et administrateur,
-        doivent encore être mises en place.
-      </p>
-    </div>
-  </section>
+      <button type="submit">Enregistrer la leçon</button>
+    </form>
+    <div id="coursMessage" class="notice hidden"></div>
+  </div>
+</section>
 
 </main>
 
 <footer>
-  <div class="wrap footer-row">
-    <span>© <span id="year"></span> GAME BUILD</span>
-    <span>Apprendre aujourd'hui, construire demain !</span>
-  </div>
+  <strong>GAME BUILD</strong>
+  <p>Apprendre aujourd'hui pour construire demain.</p>
 </footer>
 
 <script>
-  document.getElementById("year").textContent =
-    new Date().getFullYear();
-</script>
+/* CONFIGURATION SUPABASE */
+const SUPABASE_URL = "https://fxurcqxueqcprskbmvcb.supabase.co";
+const SUPABASE_KEY = "sb_publishable_wlkUpKMnmluDJNDd3-YHpw_zGz0eG3";
 
-</body>
-  </html>
-        
+const db = window.supabase.createClient(
+  SUPABASE_URL,
+  SUPABASE_KEY
+);
+
+let currentUser = null;
+let formations = [];
+
+/* MESSAGES */
+function afficherMessage(id, texte, type="") {
+  const zone = document.getElementById(id);
+  zone.textContent = texte;
+  zone.className = "notice " + type;
+  zone.classList.remove("hidden");
+}
+
+/* FORMATAGE SÉCURISÉ DU TEXTE */
+function creerTexte(tag, texte) {
+  const el = document.createElement(tag);
+  el.textContent = texte ?? "";
+  return el;
+}
+
+/* CHARGEMENT DES FORMATIONS */
+async function chargerFormations() {
+  const zone = document.getElementById("formationsListe");
+
+  const {data,error} = await db
+    .from("formations")
+    .select("id,nom,description,prix_fcfa")
+    .eq("actif",true)
+    .order("id");
+
+  if(error) {
+    zone.textContent = "Impossible de charger les formations.";
+    return;
+  }
+
+  formations = data || [];
+  zone.innerHTML = "";
+
+  const select = document.getElementById("formationChoisie");
+  const selectAdmin = document.getElementById("coursFormation");
+
+  select.innerHTML = "";
+  selectAdmin.innerHTML = "";
+
+  formations.forEach(f => {
+    const card = document.createElement("div");
+    card.className = "card";
+
+    card.appendChild(creerTexte("h3",f.nom));
+    card.appendChild(creerTexte("p",f.description));
+    const prix = creerTexte("div",
+      Number(f.prix_fcfa).toLocaleString("fr-FR") + " FCFA"
+    );
+    prix.className = "price";
+    card.appendChild(prix);
+
+    const bouton = creerTexte("button","Choisir cette formation");
+    bouton.onclick = () => {
+      select.value = String(f.id);
+      document.getElementById("compte").scrollIntoView({behavior:"smooth"});
+    };
+    card.appendChild(bouton);
+    zone.appendChild(card);
+
+    const option = document.createElement("option");
+    option.value = f.id;
+    option.textContent = f.nom;
+    select.appendChild(option);
+
+    const optionAdmin = document.createElement("option");
+    optionAdmin.value = f.id;
+    optionAdmin.textContent = f.nom;
+    selectAdmin.appendChild(optionAdmin);
+  });
+}
+
+/* CRÉATION DU COMPTE */
+document.getElementById("signupForm").addEventListener("submit",async e => {
+  e.preventDefault();
+
+  const nom = document.getElementById("signupNom").value.trim();
+  const telephone = document.getElementById("signupTelephone").value.trim();
+  const email = document.getElementById("signupEmail").value.trim();
+  const password = document.getElementById("signupPassword").value;
+
+  const {data,error} = await db.auth.signUp({
+    email,
+    password,
+    options:{
+      data:{
+        nom_complet:nom,
+        telephone:telephone
+      }
+    }
+  });
+
+  if(error) {
+    afficherMessage("authMessage",error.message,"error");
+    return;
+  }
+
+  if(data.session) {
+    afficherMessage("authMessage","Compte créé avec succès.","success");
+    await chargerSession();
+  } else {
+    afficherMessage(
+      "authMessage",
+      "Compte créé. Vérifie ton e-mail si une confirmation est demandée, puis connecte-toi.",
+      "success"
+    );
+  }
+});
+
+/* CONNEXION */
+document.getElementById("loginForm").addEventListener("submit",async e => {
+  e.preventDefault();
+
+  const email = document.getElementById("loginEmail").value.trim();
+  const password = document.getElementById("loginPassword").value;
+
+  const {error} = await db.auth.signInWithPassword({email,password});
+
+  if(error) {
+    afficherMessage("authMessage",error.message,"error");
+    return;
+  }
+
+  afficherMessage("authMessage","Connexion réussie.","success");
+  await chargerSession();
+});
+
+/* DÉCONNEXION */
+document.getElementById("logoutBtn").addEventListener("click",async () => {
+  await db.auth.signOut();
+  location.reload();
+});
+
+/* SESSION */
+async function chargerSession() {
+  const {data,error} = await db.auth.getSession();
+
+  if(error) return;
+
+  currentUser = data.session?.user || null;
+
+  const espace = document.getElementById("espace");
+  const admin = document.getElementById("adminSection");
+  const logout = document.getElementById("logoutBtn");
+
+  if(!currentUser) {
+    espace.classList.add("hidden");
+    admin.classList.add("hidden");
+    logout.classList.add("hidden");
+    document.getElementById("signupForm").classList.remove("hidden");
+    document.getElementById("loginForm").classList.remove("hidden");
+    return;
+  }
+
+  espace.classList.remove("hidden");
+  logout.classList.remove("hidden");
+  document.getElementById("signupForm").classList.add("hidden");
+  document.getElementById("loginForm").classList.add("hidden");
+
+  document.getElementById("welcome").textContent =
+    "Connecté avec : " + currentUser.email;
+
+  await chargerMesInscriptions();
+  await chargerMesPaiements();
+
+  const isAdmin = currentUser.app_metadata?.role === "admin";
+
+  if(isAdmin) {
+    admin.classList.remove("hidden");
+    await chargerAdministration();
+  } else {
+    admin.classList.add("hidden");
+  }
+}
+
+/* INSCRIPTION À UNE FORMATION */
+document.getElementById("enrollForm").addEventListener("submit",async e => {
+  e.preventDefault();
+
+  if(!currentUser) {
+    afficherMessage("enrollMessage","Connecte-toi d'abord.","error");
+    return;
+  }
+
+  const nom = currentUser.user_metadata?.nom_complet || "";
+  const telephone = currentUser.user_metadata?.telephone || "";
+  const formationId = Number(
+    document.getElementById("formationChoisie").value
+  );
+
+  if(!nom || !telephone) {
+    afficherMessage(
+      "enrollMessage",
+      "Les informations de ton compte sont incomplètes. Contacte l'administrateur.",
+      "error"
+    );
+    return;
+  }
+
+  const {error} = await db.rpc("inscrire_eleve",{
+    p_nom_eleve:nom,
+    p_telephone:telephone,
+    p_formation_id:formationId
+  });
+
+  if(error) {
+    afficherMessage("enrollMessage",error.message,"error");
+    return;
+  }
+
+  afficherMessage(
+    "enrollMessage",
+    "Inscription enregistrée. Tu peux maintenant choisir ton moyen de paiement.",
+    "success"
+  );
+
+  await chargerMesInscriptions();
+});
+
+/* AFFICHER LES INSCRIPTIONS DE L'ÉLÈVE */
+async function chargerMesInscriptions() {
+  const zone = document.getElementById("mesInscriptions");
+
+  const {data,error} = await db
+    .from("inscriptions")
+    .select("id,statut,formation_id,formations(nom,prix_fcfa)")
+    .order("created_at",{ascending:false});
+
+  zone.innerHTML = "";
+
+  if(error) {
+    zone.textContent = error.message;
+    return;
+  }
+
+  if(!data || data.length === 0) {
+    zone.textContent = "Tu n'as pas encore d'inscription.";
+    return;
+  }
+
+  for(const inscription of data) {
+    const div = document.createElement("div");
+    div.className = "item";
+
+    div.appendChild(creerTexte(
+      "h3",
+      inscription.formations?.nom || "Formation"
+    ));
+
+    div.appendChild(creerTexte(
+      "p",
+      "Statut de l'inscription : " + inscription.statut
+    ));
+
+    if(inscription.statut === "en_attente") {
+      const select = document.createElement("select");
+
+      const mtn = document.createElement("option");
+      mtn.value = "MTN_MOMO";
+      mtn.textContent = "MTN Mobile Money";
+
+      const moov = document.createElement("option");
+      moov.value = "MOOV_MONEY";
+      moov.textContent = "Moov Money";
+
+      select.append(mtn,moov);
+
+      const info = creerTexte(
+        "p",
+        "Choisis ton moyen de paiement. Effectue le transfert avec les coordonnées qui t'ont été communiquées. Aucun numéro de réception n'est affiché ici."
+      );
+
+      const bouton = creerTexte(
+        "button",
+        "Déclarer ma demande de paiement"
+      );
+
+      bouton.onclick = async () => {
+        bouton.disabled = true;
+
+        const {data:result,error:payError} = await db.rpc(
+          "creer_demande_paiement",
+          {
+            p_inscription_id:inscription.id,
+            p_methode:select.value
+          }
+        );
+
+        bouton.disabled = false;
+
+        if(payError) {
+          alert(payError.message);
+          return;
+        }
+
+        alert(
+          "Demande enregistrée pour " +
+          result.montant_fcfa +
+          " FCFA. Ton paiement reste en attente de vérification par l'administrateur. Aucun cours n'est encore accessible."
+        );
+
+        await chargerMesPaiements();
+        await chargerMesInscriptions();
+      };
+
+      div.append(info,select,bouton);
+    }
+
+    if(inscription.statut === "valide") {
+      const boutonCours = creerTexte("button","Accéder à mes cours");
+      boutonCours.onclick = () => chargerCours(inscription.formation_id);
+      div.appendChild(boutonCours);
+    }
+
+    zone.appendChild(div);
+  }
+}
+
+/* AFFICHER LES PAIEMENTS DE L'ÉLÈVE */
+async function chargerMesPaiements() {
+  const zone = document.getElementById("mesPaiements");
+
+  const {data,error} = await db
+    .from("paiements")
+    .select("id,montant_fcfa,methode,statut,reference_transaction")
+    .order("created_at",{ascending:false});
+
+  zone.innerHTML = "";
+
+  if(error) {
+    zone.textContent = error.message;
+    return;
+  }
+
+  if(!data || data.length === 0) {
+    zone.textContent = "Aucune demande de paiement.";
+    return;
+  }
+
+  data.forEach(p => {
+    const div = document.createElement("div");
+    div.className = "item";
+
+    div.appendChild(creerTexte(
+      "strong",
+      p.methode === "MTN_MOMO" ? "MTN MoMo" : "Moov Money"
+    ));
+
+    div.appendChild(creerTexte(
+      "p",
+      p.montant_fcfa + " FCFA — Statut : " + p.statut
+    ));
+
+    if(p.statut === "en_attente") {
+      div.appendChild(creerTexte(
+        "p",
+        "Nous attendons la vérification de ton paiement."
+      ));
+    }
+
+    if(p.statut === "confirme") {
+      div.appendChild(creerTexte(
+        "p",
+        "Paiement confirmé. Ton inscription peut être consultée dans ton espace."
+      ));
+    }
+
+    zone.appendChild(div);
+  });
+}
+
+/* OUVRIR LES COURS */
+async function chargerCours(formationId) {
+  const zone = document.getElementById("mesCours");
+  zone.innerHTML = "Vérification de ton accès...";
+
+  const {data:autorise,error:accessError} = await db.rpc(
+    "verifier_acces_formation",
+    {p_formation_id:formationId}
+  );
+
+  if(accessError || !autorise) {
+    zone.textContent =
+      "Accès refusé. Ton paiement et ton inscription doivent être validés.";
+    return;
+  }
+
+  const {data,error} = await db
+    .from("cours")
+    .select("id,titre,contenu,ordre")
+    .eq("formation_id",formationId)
+    .eq("actif",true)
+    .order("ordre");
+
+  zone.innerHTML = "";
+
+  if(error) {
+    zone.textContent = error.message;
+    return;
+  }
+
+  if(!data || data.length === 0) {
+    zone.textContent = "Les leçons de cette formation seront bientôt disponibles.";
+    return;
+  }
+
+  data.forEach(c => {
+    const div = document.createElement("div");
+    div.className = "card";
+
+    const titre = creerTexte("h3",c.ordre + ". " + c.titre);
+    const contenu = creerTexte("p",c.contenu);
+    contenu.style.whiteSpace = "pre-wrap";
+
+    div.append(titre,contenu);
+    zone.appendChild(div);
+  });
+}
+
+/* ESPACE ADMINISTRATEUR */
+async function chargerAdministration() {
+  if(!currentUser || currentUser.app_metadata?.role !== "admin") {
+    return;
+  }
+
+  await chargerAdminInscriptions();
+  await chargerAdminPaiements();
+}
+
+/* TOUTES LES INSCRIPTIONS */
+async function chargerAdminInscriptions() {
+  const zone = document.getElementById("adminInscriptions");
+
+  const {data,error} = await db
+    .from("inscriptions")
+    .select("id,nom_eleve,telephone,statut,formations(nom)")
+    .order("created_at",{ascending:false});
+
+  zone.innerHTML = "";
+
+  if(error) {
+    zone.textContent = error.message;
+    return;
+  }
+
+  if(!data || data.length === 0) {
+    zone.textContent = "Aucune inscription pour le moment.";
+    return;
+  }
+
+  data.forEach(i => {
+    const div = document.createElement("div");
+    div.className = "item";
+
+    div.appendChild(creerTexte(
+      "strong",
+      i.nom_eleve
+    ));
+
+    div.appendChild(creerTexte(
+      "p",
+      "Téléphone : " + i.telephone
+    ));
+
+    div.appendChild(creerTexte(
+      "p",
+      "Formation : " + (i.formations?.nom || "")
+    ));
+
+    div.appendChild(creerTexte(
+      "p",
+      "Statut : " + i.statut
+    ));
+
+    zone.appendChild(div);
+  });
+}
+
+/* TOUTES LES DEMANDES DE PAIEMENT */
+async function chargerAdminPaiements() {
+  const zone = document.getElementById("adminPaiements");
+
+  const {data,error} = await db
+    .from("paiements")
+    .select("id,inscription_id,montant_fcfa,methode,statut,reference_transaction")
+    .order("created_at",{ascending:false});
+
+  zone.innerHTML = "";
+
+  if(error) {
+    zone.textContent = error.message;
+    return;
+  }
+
+  if(!data || data.length === 0) {
+    zone.textContent = "Aucune demande de paiement.";
+    return;
+  }
+
+  data.forEach(p => {
+    const div = document.createElement("div");
+    div.className = "item";
+
+    div.appendChild(creerTexte(
+      "strong",
+      "Demande de paiement #" + p.id
+    ));
+
+    div.appendChild(creerTexte(
+      "p",
+      "Inscription #" + p.inscription_id
+    ));
+
+    div.appendChild(creerTexte(
+      "p",
+      "Montant : " + p.montant_fcfa + " FCFA"
+    ));
+
+    div.appendChild(creerTexte(
+      "p",
+      "Moyen : " + (p.methode === "MTN_MOMO" ? "MTN MoMo" : "Moov Money")
+    ));
+
+    div.appendChild(creerTexte(
+      "p",
+      "Statut : " + p.statut
+    ));
+
+    if(p.statut === "en_attente") {
+      const bouton = creerTexte(
+        "button",
+        "Confirmer après réception réelle"
+      );
+
+      bouton.onclick = async () => {
+        const confirmation = confirm(
+          "As-tu personnellement vérifié que les " +
+          p.montant_fcfa +
+          " FCFA sont bien arrivés sur ton compte ?"
+        );
+
+        if(!confirmation) return;
+
+        const refe
