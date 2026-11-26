@@ -2,115 +2,148 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>GAME BUILD ADMIN</title>
-<style>
-*{box-sizing:border-box}
-body{
-  margin:0;
-  font-family:Arial,sans-serif;
-  background:#101827;
-  color:white;
-}
-header{
-  background:#17243a;
-  padding:22px 16px;
-  border-bottom:2px solid #19c7a0;
-}
-header h1{margin:0;color:#19c7a0}
-header p{margin:7px 0 0;color:#bdc9d8}
-main{padding:18px;max-width:700px;margin:auto}
-h2{font-size:21px}
-.card{
-  background:#1b2a40;
-  padding:18px;
-  border-radius:12px;
-  margin:14px 0;
-  border:1px solid #30445e;
-}
-.number{font-size:25px;color:#19c7a0;font-weight:bold}
-button{
-  width:100%;
-  padding:14px;
-  margin:7px 0;
-  border:0;
-  border-radius:8px;
-  background:#19c7a0;
-  color:#102033;
-  font-size:15px;
-  font-weight:bold;
-}
-.note{
-  color:#c4d0df;
-  font-size:14px;
-  line-height:1.6;
-}
-footer{
-  text-align:center;
-  padding:25px;
-  color:#9baabd;
-  font-size:12px;
-}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Administration - GAME BUILD</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #0b1220;
+      color: #f8fafc;
+    }
+    header {
+      background: #111c30;
+      padding: 22px 15px;
+      text-align: center;
+      border-bottom: 2px solid #263a59;
+    }
+    header h1 { color: #38bdf8; margin: 0; }
+    .container {
+      width: 92%;
+      max-width: 950px;
+      margin: 25px auto;
+    }
+    .intro { text-align: center; margin-bottom: 25px; }
+    .intro h2 { color: #38bdf8; }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 15px;
+    }
+    .card {
+      background: #152238;
+      border: 1px solid #2b405e;
+      border-radius: 12px;
+      padding: 20px;
+    }
+    .card h3 { color: #7dd3fc; margin-top: 0; }
+    .card p { color: #cbd5e1; }
+    .status {
+      background: #3a2b12;
+      color: #fde68a;
+      padding: 15px;
+      border-radius: 10px;
+      margin-top: 25px;
+      line-height: 1.6;
+    }
+    .section {
+      background: #152238;
+      padding: 20px;
+      border-radius: 12px;
+      margin-top: 20px;
+    }
+    .section h3 { color: #38bdf8; }
+    a {
+      color: #38bdf8;
+      text-decoration: none;
+    }
+    .button {
+      display: inline-block;
+      background: #0284c7;
+      color: white;
+      padding: 12px 17px;
+      border-radius: 8px;
+      margin-top: 12px;
+    }
+    footer {
+      text-align: center;
+      padding: 20px;
+      color: #94a3b8;
+      background: #111c30;
+      margin-top: 30px;
+    }
+  </style>
 </head>
 <body>
 
 <header>
   <h1>GAME BUILD</h1>
-  <p>Espace administration</p>
+  <p>Espace d'administration</p>
 </header>
 
-<main>
-  <h2>Tableau de bord</h2>
-  <p class="note">Bienvenue dans l'espace de gestion de GAME BUILD.</p>
+<main class="container">
 
-  <div class="card">
-    <p>Élèves inscrits</p>
-    <div class="number">À connecter</div>
+  <div class="intro">
+    <h2>Tableau de bord</h2>
+    <p>Bienvenue dans l'espace de gestion de GAME BUILD.</p>
   </div>
 
-  <div class="card">
-    <p>Paiements</p>
-    <div class="number">À connecter</div>
+  <div class="grid">
+
+    <div class="card">
+      <h3>👨‍🎓 Inscriptions</h3>
+      <p>Consulter et gérer les demandes d'inscription des élèves.</p>
+      <p><strong>En attente :</strong> —</p>
+    </div>
+
+    <div class="card">
+      <h3>💳 Paiements</h3>
+      <p>Contrôler les paiements avant de donner accès aux formations.</p>
+      <p><strong>À vérifier :</strong> —</p>
+    </div>
+
+    <div class="card">
+      <h3>📚 Formations</h3>
+      <p>Organiser les cours et les contenus pédagogiques.</p>
+      <ul>
+        <li>Élevage</li>
+        <li>Agriculture</li>
+        <li>Création de jeux vidéo</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3>💬 Questions des élèves</h3>
+      <p>Consulter les questions qui nécessitent une réponse de l'administration.</p>
+      <p><strong>Questions reçues :</strong> —</p>
+    </div>
+
   </div>
 
-  <div class="card">
-    <p>Formations disponibles</p>
-    <div class="number">2 formats prévus</div>
-    <p class="note">Cours écrits et cours vidéo.</p>
+  <div class="section">
+    <h3>📊 Gestion des élèves</h3>
+    <p>Cette partie permettra de consulter les dossiers des élèves, leur formation et leur statut d'inscription.</p>
+    <p><strong>Fonctionnalité en préparation.</strong></p>
   </div>
 
-  <h2>Gestion de la plateforme</h2>
-
-  <div class="card">
-    <h3>Gestion des élèves</h3>
-    <p class="note">La liste des inscriptions apparaîtra ici après connexion à la base de données.</p>
-    <button onclick="alert('La gestion des élèves sera activée après connexion au serveur.')">
-      Voir les élèves
-    </button>
+  <div class="section">
+    <h3>🤖 GAME BUILD AI</h3>
+    <p>L'assistant pédagogique pourra répondre aux questions des élèves et transmettre à l'administration les questions auxquelles il ne sait pas répondre.</p>
+    <p><strong>Connexion à l'intelligence artificielle en préparation.</strong></p>
   </div>
 
-  <div class="card">
-    <h3>Validation des paiements</h3>
-    <p class="note">Les demandes de validation seront disponibles après la mise en place du système de paiement.</p>
-    <button onclick="alert('La validation des paiements sera activée ultérieurement.')">
-      Gérer les paiements
-    </button>
+  <div class="status">
+    <strong>Important :</strong> ce tableau de bord est actuellement une maquette visuelle.
+    Il ne reçoit pas encore les inscriptions, ne vérifie pas les paiements et ne stocke pas les questions.
+    Une base de données et une connexion sécurisée seront nécessaires avant son utilisation réelle.
   </div>
 
-  <div class="card">
-    <h3>Questions des élèves</h3>
-    <p class="note">Les messages seront centralisés ici après connexion au serveur.</p>
-    <button onclick="alert('La messagerie sera activée ultérieurement.')">
-      Voir les messages
-    </button>
-  </div>
+  <p style="text-align:center;">
+    <a class="button" href="index.html">Retour à l'accueil</a>
+  </p>
 
-  <div class="card">
-    <h3>Sécurité</h3>
-    <p class="note">La connexion administrateur avec code PIN à 4 chiffres sera ajoutée côté serveur. Cette maquette ne protège pas encore l'accès.</p>
-  </div>
 </main>
 
 <footer>
