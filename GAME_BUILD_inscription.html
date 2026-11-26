@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Préinscription — GAME BUILD</title>
+<style>
+:root{--bg:#0b1020;--panel:#131c32;--ink:#f4f7ff;--muted:#b9c5dc;--accent:#55d6a5;--line:#293956}
+*{box-sizing:border-box}body{margin:0;min-height:100vh;background:radial-gradient(ellipse at 80% 0%,#1d3d54 0,transparent 42%),var(--bg);color:var(--ink);font:16px/1.6 system-ui,Arial,sans-serif;display:grid;place-items:center;padding:24px}
+main{width:min(100%,560px);background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:clamp(22px,5vw,38px)}
+.brand{font-weight:900;letter-spacing:1.5px}.brand span{color:var(--accent)}h1{font-size:2rem;line-height:1.15;margin:24px 0 8px}p{color:var(--muted)}
+label{display:block;font-weight:700;margin:18px 0 7px}input{width:100%;padding:14px;border-radius:11px;border:1px solid #52617d;background:#0b1020;color:var(--ink);font:inherit}
+button{width:100%;margin-top:22px;padding:14px;border:0;border-radius:11px;background:var(--accent);color:#082017;font:inherit;font-weight:800}
+.notice{margin-top:20px;padding:14px;border-left:4px solid #78a7ff;background:#18253c;border-radius:9px;color:var(--muted);font-size:.92rem}a{color:var(--accent)}
+</style></head>
+<body><main>
+<div class="brand">GAME <span>BUILD</span></div>
+<h1>Préinscription à la formation</h1>
+<p>Indique ton nom complet et ton numéro de téléphone pour préparer ta demande d'inscription.</p>
+<form id="registration" autocomplete="on">
+<label for="fullname">Nom complet</label>
+<input id="fullname" name="fullname" type="text" autocomplete="name" placeholder="Ex. : Jean Dupont" required maxlength="100">
+<label for="phone">Numéro de téléphone</label>
+<input id="phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" placeholder="Ex. : 01 XX XX XX XX" required maxlength="25">
+<button type="submit">Préparer ma préinscription</button>
+</form>
+<div class="notice" id="notice" role="status">Maquette de préinscription : les données ne sont pas envoyées ni enregistrées pour le moment. Le formulaire sera activé après la mise en place du serveur sécurisé et de l'espace administrateur.</div>
+<p><a href="index.html">← Retour à l'accueil</a></p>
+</main>
+<script>
+document.getElementById('registration').addEventListener('submit',function(e){e.preventDefault();document.getElementById('notice').textContent="L'envoi n'est pas encore activé. Aucune donnée n'a été transmise ni enregistrée.";});
+</script></body></html>
