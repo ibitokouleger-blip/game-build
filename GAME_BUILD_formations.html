@@ -1,43 +1,174 @@
-<!doctype html>
+
+<!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Formation — GAME BUILD</title>
-<style>
-:root{--bg:#0b1020;--panel:#131c32;--ink:#f4f7ff;--muted:#b9c5dc;--accent:#55d6a5;--line:#293956}
-*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 system-ui,Arial,sans-serif}
-header{padding:26px 20px;background:linear-gradient(120deg,#142e3c,#182344);border-bottom:1px solid var(--line)}
-.wrap{width:min(100% - 32px,900px);margin:auto}.brand{font-weight:900;letter-spacing:1.5px}.brand span{color:var(--accent)}
-h1{font-size:clamp(2rem,6vw,3rem);line-height:1.1;margin:24px 0 10px}h2{margin:0 0 8px;font-size:1.2rem}
-p{color:var(--muted)}main{padding:28px 0 50px}
-.intro,.module,.notice{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:20px;margin:16px 0}
-.price{display:inline-block;background:#1d493e;color:#aaf4d7;padding:5px 11px;border-radius:30px;font-weight:800}
-.module small{color:var(--accent);font-weight:800;letter-spacing:.5px}
-.module p{margin:7px 0 0}.notice{border-left:4px solid #78a7ff;color:var(--muted)}
-a{color:var(--accent)}footer{border-top:1px solid var(--line);padding:20px 0;color:var(--muted)}
-</style></head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Formations - GAME BUILD</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #0b1220;
+      color: #f8fafc;
+      line-height: 1.6;
+    }
+    header {
+      background: #111c30;
+      padding: 22px 16px;
+      text-align: center;
+      border-bottom: 2px solid #263a59;
+    }
+    header h1 { color: #38bdf8; margin: 0; }
+    nav { margin-top: 12px; }
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      margin: 0 9px;
+      font-size: 14px;
+    }
+    .container {
+      width: 92%;
+      max-width: 950px;
+      margin: 28px auto;
+    }
+    .intro { text-align: center; margin-bottom: 30px; }
+    .intro h2 { color: #38bdf8; font-size: 27px; }
+    .course {
+      background: #152238;
+      border: 1px solid #2b405e;
+      border-radius: 14px;
+      padding: 22px;
+      margin: 18px 0;
+    }
+    .course h3 { color: #7dd3fc; margin-top: 0; }
+    .course p { color: #d5dfed; }
+    .course ul { padding-left: 22px; color: #e2e8f0; }
+    .tag {
+      display: inline-block;
+      background: #123d58;
+      color: #7dd3fc;
+      padding: 5px 11px;
+      border-radius: 20px;
+      font-size: 13px;
+      margin-bottom: 10px;
+    }
+    .info {
+      background: #102b27;
+      border: 1px solid #226b54;
+      padding: 18px;
+      border-radius: 12px;
+      margin-top: 25px;
+    }
+    .contact {
+      text-align: center;
+      padding: 25px 12px;
+      color: #cbd5e1;
+    }
+    .contact a { color: #38bdf8; }
+    .back {
+      display: inline-block;
+      background: #0284c7;
+      color: white;
+      padding: 11px 18px;
+      border-radius: 8px;
+      text-decoration: none;
+      margin-top: 12px;
+    }
+    footer {
+      text-align: center;
+      padding: 18px;
+      background: #111c30;
+      color: #94a3b8;
+      font-size: 13px;
+    }
+  </style>
+</head>
 <body>
-<header><div class="wrap">
-<div class="brand">GAME <span>BUILD</span></div>
-<h1>Apprends à créer des jeux vidéo avec l'IA</h1>
-<p>Une formation progressive pour imaginer, construire et tester un premier jeu vidéo en utilisant Claude comme assistant.</p>
-<span class="price">Formation : 3 500 FCFA</span>
-</div></header>
-<main class="wrap">
-<section class="intro">
-<h2>Bienvenue dans la formation</h2>
-<p>Tu vas apprendre à décrire ton idée à Claude, organiser ton projet, tester le résultat et améliorer ton jeu étape par étape. Aucun cours ne promet un revenu automatique : la création et la monétisation demandent du travail, des tests et le respect des règles des plateformes.</p>
-</section>
-<h2>Programme de la formation</h2>
-<section class="module"><small>MODULE 01</small><h2>Découvrir Claude</h2><p>Comprendre ce qu'un assistant IA peut faire, préparer une bonne description de jeu et vérifier les résultats.</p></section>
-<section class="module"><small>MODULE 02</small><h2>Imaginer son jeu</h2><p>Choisir le type de jeu, le public, les règles, les personnages et l'objectif principal.</p></section>
-<section class="module"><small>MODULE 03</small><h2>Construire un premier prototype</h2><p>Demander une première version, comprendre les fichiers produits et avancer par petites modifications.</p></section>
-<section class="module"><small>MODULE 04</small><h2>Ajouter des fonctionnalités</h2><p>Préparer les niveaux, les commandes, les scores et les messages du jeu, puis tester chaque changement.</p></section>
-<section class="module"><small>MODULE 05</small><h2>Tester et corriger</h2><p>Repérer les erreurs, décrire précisément les problèmes et vérifier les corrections.</p></section>
-<section class="module"><small>MODULE 06</small><h2>Publier et présenter son jeu</h2><p>Préparer une présentation claire et choisir une plateforme de publication adaptée.</p></section>
-<section class="module"><small>MODULE 07</small><h2>Comprendre la publicité en ligne</h2><p>Découvrir les bases d'AdSense pour un site web, les conditions d'éligibilité et les règles à respecter.</p></section>
-<section class="notice"><strong>Contenu en préparation</strong><p>Cette page présente le programme. Les leçons détaillées, les vidéos et l'accès réservé aux élèves seront ajoutés après la mise en place du système sécurisé d'inscription et d'administration.</p></section>
-<p><a href="index.html">← Retour à l'accueil</a> · <a href="inscription.html">Préinscription</a></p>
+
+<header>
+  <h1>GAME BUILD</h1>
+  <nav>
+    <a href="index.html">Accueil</a>
+    <a href="GAME_BUILD_formations.html">Formations</a>
+    <a href="mailto:ibitokouleger@gmail.com">Contact</a>
+  </nav>
+</header>
+
+<main class="container">
+  <section class="intro">
+    <h2>Nos formations</h2>
+    <p>Bienvenue dans l'espace de formation GAME BUILD.</p>
+    <p>Apprends de nouvelles compétences et développe tes projets à ton rythme.</p>
+  </section>
+
+  <section class="course">
+    <span class="tag">Formation 01</span>
+    <h3>🐓 Formation en élevage</h3>
+    <p>Découvre les bases de l'élevage et apprends à mieux organiser une activité d'élevage.</p>
+    <ul>
+      <li>Introduction à l'élevage</li>
+      <li>Choix et besoins des animaux</li>
+      <li>Alimentation et abreuvement</li>
+      <li>Hygiène et entretien de l'habitat</li>
+      <li>Prévention et suivi sanitaire avec l'aide de professionnels</li>
+      <li>Organisation et gestion d'un petit élevage</li>
+    </ul>
+  </section>
+
+  <section class="course">
+    <span class="tag">Formation 02</span>
+    <h3>🌱 Formation en agriculture</h3>
+    <p>Apprends les notions essentielles pour comprendre les cultures et organiser un projet agricole.</p>
+    <ul>
+      <li>Découverte de l'agriculture</li>
+      <li>Préparation du sol</li>
+      <li>Choix des cultures selon le milieu</li>
+      <li>Semis et entretien des cultures</li>
+      <li>Gestion de l'eau et protection des cultures</li>
+      <li>Récolte et organisation de la production</li>
+    </ul>
+  </section>
+
+  <section class="course">
+    <span class="tag">Formation 03</span>
+    <h3>🎮 Création de jeux vidéo sans programmation</h3>
+    <p>Découvre comment imaginer et créer tes propres jeux vidéo avec des outils adaptés, sans devoir apprendre à coder au départ.</p>
+    <ul>
+      <li>Imaginer un concept de jeu</li>
+      <li>Découvrir les outils de création sans code</li>
+      <li>Créer les personnages et les décors</li>
+      <li>Ajouter des niveaux, des boutons et des scores</li>
+      <li>Tester et améliorer son jeu</li>
+      <li>Préparer le partage de son jeu</li>
+    </ul>
+  </section>
+
+  <section class="info">
+    <h3>📚 Comment se déroulent les formations ?</h3>
+    <ul>
+      <li>Leçons écrites faciles à suivre</li>
+      <li>Supports vidéo</li>
+      <li>Exercices pratiques</li>
+      <li>Accompagnement pédagogique</li>
+    </ul>
+    <p><strong>Tarif annoncé : 3 500 FCFA.</strong></p>
+    <p>Les modalités d'inscription et de paiement seront communiquées lorsque le système sécurisé sera prêt.</p>
+  </section>
+
+  <div class="contact">
+    <h3>Besoin d'informations ?</h3>
+    <p>Écris-nous à :
+      <a href="mailto:ibitokouleger@gmail.com">ibitokouleger@gmail.com</a>
+    </p>
+    <a class="back" href="index.html">Retour à l'accueil</a>
+  </div>
 </main>
-<footer><div class="wrap">© GAME BUILD — Formation et apprentissage.</div></footer>
-</body></html>
+
+<footer>
+  GAME BUILD — Apprendre aujourd'hui, construire demain !
+</footer>
+
+</body>
+</html>
