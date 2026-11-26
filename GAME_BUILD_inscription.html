@@ -1,31 +1,134 @@
-<!doctype html>
+
+<!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Préinscription — GAME BUILD</title>
-<style>
-:root{--bg:#0b1020;--panel:#131c32;--ink:#f4f7ff;--muted:#b9c5dc;--accent:#55d6a5;--line:#293956}
-*{box-sizing:border-box}body{margin:0;min-height:100vh;background:radial-gradient(ellipse at 80% 0%,#1d3d54 0,transparent 42%),var(--bg);color:var(--ink);font:16px/1.6 system-ui,Arial,sans-serif;display:grid;place-items:center;padding:24px}
-main{width:min(100%,560px);background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:clamp(22px,5vw,38px)}
-.brand{font-weight:900;letter-spacing:1.5px}.brand span{color:var(--accent)}h1{font-size:2rem;line-height:1.15;margin:24px 0 8px}p{color:var(--muted)}
-label{display:block;font-weight:700;margin:18px 0 7px}input{width:100%;padding:14px;border-radius:11px;border:1px solid #52617d;background:#0b1020;color:var(--ink);font:inherit}
-button{width:100%;margin-top:22px;padding:14px;border:0;border-radius:11px;background:var(--accent);color:#082017;font:inherit;font-weight:800}
-.notice{margin-top:20px;padding:14px;border-left:4px solid #78a7ff;background:#18253c;border-radius:9px;color:var(--muted);font-size:.92rem}a{color:var(--accent)}
-</style></head>
-<body><main>
-<div class="brand">GAME <span>BUILD</span></div>
-<h1>Préinscription à la formation</h1>
-<p>Indique ton nom complet et ton numéro de téléphone pour préparer ta demande d'inscription.</p>
-<form id="registration" autocomplete="on">
-<label for="fullname">Nom complet</label>
-<input id="fullname" name="fullname" type="text" autocomplete="name" placeholder="Ex. : Jean Dupont" required maxlength="100">
-<label for="phone">Numéro de téléphone</label>
-<input id="phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" placeholder="Ex. : 01 XX XX XX XX" required maxlength="25">
-<button type="submit">Préparer ma préinscription</button>
-</form>
-<div class="notice" id="notice" role="status">Maquette de préinscription : les données ne sont pas envoyées ni enregistrées pour le moment. Le formulaire sera activé après la mise en place du serveur sécurisé et de l'espace administrateur.</div>
-<p><a href="index.html">← Retour à l'accueil</a></p>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Inscription - GAME BUILD</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      padding: 20px 12px;
+      font-family: Arial, sans-serif;
+      background: #0b1220;
+      color: #f8fafc;
+    }
+    header {
+      text-align: center;
+      padding: 20px;
+      background: #111c30;
+      border-radius: 12px;
+    }
+    header h1 { color: #38bdf8; margin: 0; }
+    .container {
+      max-width: 520px;
+      margin: 28px auto;
+      background: #152238;
+      padding: 24px;
+      border-radius: 14px;
+      border: 1px solid #2b405e;
+    }
+    h2 { color: #38bdf8; text-align: center; }
+    label {
+      display: block;
+      margin: 16px 0 7px;
+      font-weight: bold;
+    }
+    input, select {
+      width: 100%;
+      padding: 13px;
+      border: 1px solid #52647e;
+      border-radius: 8px;
+      background: #0b1220;
+      color: white;
+      font-size: 16px;
+    }
+    button {
+      width: 100%;
+      padding: 14px;
+      margin-top: 22px;
+      background: #0284c7;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .notice {
+      background: #3a2b12;
+      color: #fde68a;
+      padding: 13px;
+      border-radius: 8px;
+      font-size: 14px;
+      margin-top: 20px;
+    }
+    .back {
+      display: block;
+      text-align: center;
+      color: #38bdf8;
+      margin-top: 20px;
+    }
+    footer {
+      text-align: center;
+      color: #94a3b8;
+      margin-top: 25px;
+      font-size: 13px;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>GAME BUILD</h1>
+  <p>Apprendre aujourd'hui, construire demain !</p>
+</header>
+
+<main class="container">
+  <h2>Formulaire d'inscription</h2>
+  <p>Bienvenue chez GAME BUILD. Remplis les informations ci-dessous pour demander ton inscription.</p>
+
+  <form id="inscriptionForm">
+    <label for="nom">Nom et prénom</label>
+    <input type="text" id="nom" name="nom"
+      placeholder="Entre ton nom complet" required>
+
+    <label for="telephone">Numéro de téléphone</label>
+    <input type="tel" id="telephone" name="telephone"
+      placeholder="Entre ton numéro" required>
+
+    <label for="formation">Formation souhaitée</label>
+    <select id="formation" name="formation" required>
+      <option value="">Choisir une formation</option>
+      <option value="Elevage">Élevage</option>
+      <option value="Agriculture">Agriculture</option>
+      <option value="Jeux vidéo">Création de jeux vidéo sans programmation</option>
+    </select>
+
+    <button type="submit">Envoyer ma demande</button>
+  </form>
+
+  <div class="notice">
+    Attention : le formulaire est encore en préparation.
+    Les informations ne sont pas encore enregistrées ni envoyées.
+    N'effectue aucun paiement pour le moment.
+  </div>
+
+  <a class="back" href="index.html">Retour à l'accueil</a>
 </main>
+
+<footer>
+  GAME BUILD © 2026
+  <p>Contact : ibitokouleger@gmail.com</p>
+</footer>
+
 <script>
-document.getElementById('registration').addEventListener('submit',function(e){e.preventDefault();document.getElementById('notice').textContent="L'envoi n'est pas encore activé. Aucune donnée n'a été transmise ni enregistrée.";});
-</script></body></html>
+  document.getElementById("inscriptionForm").addEventListener("submit", function(event) {
+    event.preventDefault();
+    alert("Merci ! Le système d'inscription est encore en préparation. Ta demande n'a pas été envoyée.");
+  });
+</script>
+
+</body>
+</html>
