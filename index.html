@@ -2,620 +2,477 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#0b1020">
-<title>GAME BUILD - Formations</title>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
-<style>
-:root {
-  --bg:#0b1020;
-  --panel:#131c32;
-  --green:#55d6a5;
-  --blue:#6ca9ff;
-  --text:#f4f7ff;
-  --muted:#aab6ca;
-  --border:#293650;
-}
-*{box-sizing:border-box}
-body{
-  margin:0;background:var(--bg);color:var(--text);
-  font-family:Arial,sans-serif;line-height:1.6
-}
-header{
-  padding:18px 6%;display:flex;justify-content:space-between;
-  align-items:center;flex-wrap:wrap;gap:12px;
-  border-bottom:1px solid var(--border)
-}
-.logo{font-size:25px;font-weight:bold;color:var(--green)}
-nav{display:flex;gap:15px;flex-wrap:wrap}
-a{color:var(--green);text-decoration:none}
-main{max-width:1100px;margin:auto;padding:22px 16px}
-.hero{
-  padding:50px 22px;text-align:center;
-  background:linear-gradient(135deg,#172744,#102c2b);
-  border-radius:18px;margin:20px 0 35px
-}
-h1{font-size:clamp(30px,6vw,46px);line-height:1.2}
-h2{color:var(--green)}
-p{color:var(--muted)}
-.grid{
-  display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
-  gap:16px
-}
-.card,.panel{
-  background:var(--panel);border:1px solid var(--border);
-  border-radius:14px;padding:20px;margin-bottom:17px
-}
-.price{font-size:24px;color:var(--green);font-weight:bold}
-button{
-  border:0;border-radius:8px;padding:12px 17px;
-  background:var(--green);color:#092018;
-  font-weight:bold;cursor:pointer;margin:5px 3px
-}
-button.secondary{background:#263854;color:white}
-button.danger{background:#a83e50;color:white}
-button:disabled{opacity:.5;cursor:not-allowed}
-input,select,textarea{
-  width:100%;padding:12px;margin:7px 0 14px;
-  border-radius:8px;border:1px solid var(--border);
-  background:#0c1528;color:white;font-size:15px
-}
-label{font-size:14px;color:var(--muted)}
-.hidden{display:none!important}
-.notice{
-  padding:13px;border-radius:9px;margin:12px 0;
-  background:#172744;color:#dceaff
-}
-.success{background:#123a30;color:#a9f2d4}
-.error{background:#48232c;color:#ffd1d1}
-.item{padding:14px;border-bottom:1px solid var(--border)}
-.small{font-size:13px;color:var(--muted)}
-footer{
-  text-align:center;padding:30px;
-  border-top:1px solid var(--border);margin-top:35px
-}
-hr{border:0;border-top:1px solid var(--border);margin:25px 0}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GAME BUILD - Formations</title>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <style>
+    *{box-sizing:border-box}
+    body{margin:0;font-family:Arial,sans-serif;background:#f3f6fb;color:#172033}
+    header{background:#101d3a;color:white;padding:22px 15px;text-align:center}
+    header h1{margin:0;color:#55d6a5;font-size:30px}
+    header p{margin:8px 0 0}
+    main{max-width:950px;margin:25px auto;padding:0 14px}
+    section,.panel{background:white;padding:20px;margin-bottom:18px;border-radius:13px;box-shadow:0 3px 15px #0000000d}
+    h2{color:#14274d;margin-top:0}
+    input,select,textarea{width:100%;padding:13px;margin:7px 0 13px;border:1px solid #ccd4e2;border-radius:8px;font-size:16px}
+    button{background:#087f5b;color:white;border:0;padding:12px 17px;border-radius:8px;font-size:15px;cursor:pointer;margin:5px 3px}
+    button:hover{opacity:.88}
+    button.secondary{background:#24416f}
+    button.danger{background:#b42318}
+    .hidden{display:none!important}
+    .muted{color:#637083;font-size:14px}
+    .message{padding:12px;background:#e8f7ef;border-radius:8px;margin:10px 0;white-space:pre-wrap}
+    .error{background:#fff0ef;color:#a12620}
+    .formation,.course,.payment{border:1px solid #e1e7ef;border-radius:10px;padding:15px;margin:12px 0}
+    .price{color:#087f5b;font-weight:bold}
+    .tabs{display:flex;gap:8px;flex-wrap:wrap}
+    footer{text-align:center;padding:22px;color:#64748b}
+    label{font-weight:bold;font-size:14px}
+  </style>
 </head>
 
 <body>
-
 <header>
-  <div class="logo">GAME BUILD</div>
-  <nav>
-    <a href="#formations">Formations</a>
-    <a href="#compte">Compte</a>
-    <a href="#espace">Mon espace</a>
-  </nav>
+  <h1>GAME BUILD</h1>
+  <p>Apprendre, créer et construire son avenir</p>
 </header>
 
 <main>
+  <section>
+    <h2>Bienvenue sur GAME BUILD</h2>
+    <p>Découvrez nos formations en création de jeux vidéo, agriculture et élevage.</p>
+    <div id="formations">Chargement des formations...</div>
+  </section>
 
-<section class="hero">
-  <h1>Bienvenue sur GAME BUILD</h1>
-  <p>Apprends, développe tes compétences et construis ton avenir.</p>
-  <a href="#formations"><button>Découvrir nos formations</button></a>
-</section>
+  <section id="authSection">
+    <h2>Créer un compte</h2>
+    <form id="signupForm">
+      <label>Nom complet</label>
+      <input id="signupName" required placeholder="Votre nom complet">
 
-<section id="formations">
-  <h2>Nos formations</h2>
-  <div id="formationsListe" class="grid">
-    <p>Chargement des formations...</p>
-  </div>
-</section>
+      <label>Adresse e-mail</label>
+      <input id="signupEmail" type="email" required placeholder="Votre adresse e-mail">
 
-<section id="compte" class="panel">
-  <h2>Créer un compte élève</h2>
-  <p>Inscris-toi pour accéder à nos formations.</p>
+      <label>Mot de passe</label>
+      <input id="signupPassword" type="password" minlength="6" required placeholder="6 caractères minimum">
 
-  <form id="signupForm">
-    <label>Nom complet</label>
-    <input id="signupNom" required minlength="2" placeholder="Ton nom complet">
-
-    <label>Téléphone</label>
-    <input id="signupTelephone" required placeholder="Ton numéro de téléphone">
-
-    <label>Adresse e-mail</label>
-    <input id="signupEmail" type="email" required placeholder="Ton adresse e-mail">
-
-    <label>Mot de passe</label>
-    <input id="signupPassword" type="password" minlength="8" required placeholder="8 caractères minimum">
-
-    <button type="submit">Créer mon compte</button>
-  </form>
-
-  <hr>
-
-  <h2>Connexion</h2>
-  <form id="loginForm">
-    <label>Adresse e-mail</label>
-    <input id="loginEmail" type="email" required>
-
-    <label>Mot de passe</label>
-    <input id="loginPassword" type="password" required>
-
-    <button type="submit">Me connecter</button>
-  </form>
-
-  <div id="authMessage" class="notice hidden"></div>
-  <button id="logoutBtn" class="secondary hidden">Déconnexion</button>
-</section>
-
-<section id="espace" class="hidden">
-  <div class="panel">
-    <h2>Mon espace élève</h2>
-    <p id="welcome"></p>
-
-    <h3>Choisir une formation</h3>
-    <form id="enrollForm">
-      <label>Formation</label>
-      <select id="formationChoisie" required></select>
-      <button type="submit">M'inscrire</button>
+      <button type="submit">Créer mon compte</button>
     </form>
-    <div id="enrollMessage" class="notice hidden"></div>
-  </div>
 
-  <div class="panel">
-    <h2>Mes inscriptions</h2>
-    <div id="mesInscriptions">Chargement...</div>
-  </div>
-
-  <div class="panel">
-    <h2>Mes paiements</h2>
-    <div id="mesPaiements">Chargement...</div>
-  </div>
-
-  <div class="panel">
-    <h2>Mes cours</h2>
-    <p>Les cours sont accessibles après validation de ton paiement par l'administrateur.</p>
-    <div id="mesCours"></div>
-  </div>
-</section>
-
-<section id="adminSection" class="hidden">
-  <div class="panel">
-    <h2>Administration GAME BUILD</h2>
-    <p>Bienvenue dans ton espace administrateur.</p>
-
-    <h3>Inscriptions des élèves</h3>
-    <div id="adminInscriptions">Chargement...</div>
+    <div id="signupMessage" class="message hidden"></div>
 
     <hr>
 
-    <h3>Demandes de paiement</h3>
-    <p class="small">
-      Vérifie d'abord la réception réelle de l'argent sur ton compte MTN ou Moov.
-      Ne confirme jamais un paiement simplement sur la déclaration d'un élève.
-    </p>
-    <div id="adminPaiements">Chargement...</div>
-  </div>
+    <h2>Se connecter</h2>
+    <form id="loginForm">
+      <label>Adresse e-mail</label>
+      <input id="loginEmail" type="email" required placeholder="Votre adresse e-mail">
 
-  <div class="panel">
-    <h2>Ajouter une leçon</h2>
-    <form id="coursForm">
-      <label>Formation</label>
-      <select id="coursFormation" required></select>
+      <label>Mot de passe</label>
+      <input id="loginPassword" type="password" required placeholder="Votre mot de passe">
 
-      <label>Titre de la leçon</label>
-      <input id="coursTitre" required placeholder="Titre de la leçon">
-
-      <label>Contenu détaillé de la leçon</label>
-      <textarea id="coursContenu" rows="8" required placeholder="Écris ici le contenu du cours..."></textarea>
-
-      <label>Ordre de la leçon</label>
-      <input id="coursOrdre" type="number" min="1" value="1" required>
-
-      <button type="submit">Enregistrer la leçon</button>
+      <button type="submit">Se connecter</button>
     </form>
-    <div id="coursMessage" class="notice hidden"></div>
-  </div>
-</section>
+    <div id="loginMessage" class="message hidden"></div>
+  </section>
 
+  <section id="accountSection" class="hidden">
+    <h2>Mon espace</h2>
+    <p id="welcome"></p>
+    <button class="secondary" id="logoutButton">Se déconnecter</button>
+  </section>
+
+  <section id="enrollmentSection" class="hidden">
+    <h2>S'inscrire à une formation</h2>
+    <form id="enrollmentForm">
+      <label>Nom complet</label>
+      <input id="studentName" required placeholder="Votre nom complet">
+
+      <label>Numéro de téléphone</label>
+      <input id="studentPhone" required placeholder="Votre numéro">
+
+      <label>Choisir une formation</label>
+      <select id="formationSelect" required>
+        <option value="">Chargement...</option>
+      </select>
+
+      <button type="submit">Envoyer mon inscription</button>
+    </form>
+    <div id="enrollmentMessage" class="message hidden"></div>
+  </section>
+
+  <section id="paymentSection" class="hidden">
+    <h2>Effectuer mon paiement</h2>
+    <p>Chaque formation coûte <strong>3 500 FCFA</strong>.</p>
+
+    <div class="payment">
+      <h3>MTN Mobile Money</h3>
+      <p>Numéro : <strong>+229 01 90 23 66 08</strong></p>
+    </div>
+
+    <div class="payment">
+      <h3>Moov Money</h3>
+      <p>Numéro : <strong>+229 01 58 18 22 26</strong></p>
+    </div>
+
+    <form id="paymentForm">
+      <label>Mon inscription</label>
+      <select id="paymentEnrollment" required>
+        <option value="">Choisir une inscription</option>
+      </select>
+
+      <label>Moyen de paiement</label>
+      <select id="paymentMethod" required>
+        <option value="">Choisir</option>
+        <option value="MTN">MTN Mobile Money</option>
+        <option value="Moov">Moov Money</option>
+      </select>
+
+      <button type="submit">Envoyer ma demande de paiement</button>
+    </form>
+    <div id="paymentMessage" class="message hidden"></div>
+    <p class="muted">Après le paiement, l'administrateur vérifiera la réception avant d'ouvrir l'accès à la formation.</p>
+  </section>
+
+  <section id="coursesSection" class="hidden">
+    <h2>Mes cours</h2>
+    <label>Choisir une formation</label>
+    <select id="courseFormation">
+      <option value="">Choisir une formation</option>
+    </select>
+    <button id="loadCourses">Afficher mes cours</button>
+    <div id="coursesList"></div>
+  </section>
+
+  <section id="adminSection" class="hidden">
+    <h2>Espace administrateur</h2>
+    <p>Gestion des demandes de paiement.</p>
+    <button id="refreshAdmin">Actualiser les paiements</button>
+    <div id="adminPayments">Chargement...</div>
+  </section>
 </main>
 
-<footer>
-  <strong>GAME BUILD</strong>
-  <p>Apprendre aujourd'hui pour construire demain.</p>
-</footer>
+<footer>© GAME BUILD - Tous droits réservés</footer>
 
 <script>
-/* CONFIGURATION SUPABASE */
 const SUPABASE_URL = "https://fxurcqxueqcprskbmvcb.supabase.co";
 const SUPABASE_KEY = "sb_publishable_wlkUpKMnmluDJNDd3-YHpw_zGz0eG3";
 
-const db = window.supabase.createClient(
-  SUPABASE_URL,
-  SUPABASE_KEY
-);
+const db = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
 let currentUser = null;
 let formations = [];
+let inscriptions = [];
 
-/* MESSAGES */
-function afficherMessage(id, texte, type="") {
-  const zone = document.getElementById(id);
-  zone.textContent = texte;
-  zone.className = "notice " + type;
-  zone.classList.remove("hidden");
+function el(id){
+  return document.getElementById(id);
 }
 
-/* FORMATAGE SÉCURISÉ DU TEXTE */
-function creerTexte(tag, texte) {
-  const el = document.createElement(tag);
-  el.textContent = texte ?? "";
-  return el;
+function message(id, text, isError=false){
+  const box = el(id);
+  box.textContent = text;
+  box.classList.remove("hidden","error");
+  if(isError) box.classList.add("error");
 }
 
-/* CHARGEMENT DES FORMATIONS */
-async function chargerFormations() {
-  const zone = document.getElementById("formationsListe");
+function hideMessage(id){
+  el(id).classList.add("hidden");
+}
 
+function show(id){
+  el(id).classList.remove("hidden");
+}
+
+function hide(id){
+  el(id).classList.add("hidden");
+}
+
+function safeText(value){
+  return String(value ?? "").replace(/[&<>"']/g, c => ({
+    "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"
+  })[c]);
+}
+
+async function chargerFormations(){
   const {data,error} = await db
     .from("formations")
-    .select("id,nom,description,prix_fcfa")
+    .select("id,nom,description,prix_fcfa,actif")
     .eq("actif",true)
     .order("id");
 
-  if(error) {
-    zone.textContent = "Impossible de charger les formations.";
+  if(error){
+    el("formations").textContent = "Impossible de charger les formations. " + error.message;
     return;
   }
 
   formations = data || [];
-  zone.innerHTML = "";
 
-  const select = document.getElementById("formationChoisie");
-  const selectAdmin = document.getElementById("coursFormation");
+  el("formations").innerHTML = formations.length
+    ? formations.map(f => `
+      <div class="formation">
+        <h3>${safeText(f.nom)}</h3>
+        <p>${safeText(f.description)}</p>
+        <p class="price">${Number(f.prix_fcfa).toLocaleString("fr-FR")} FCFA</p>
+      </div>
+    `).join("")
+    : "Aucune formation disponible pour le moment.";
 
-  select.innerHTML = "";
-  selectAdmin.innerHTML = "";
+  const options = formations.map(f =>
+    `<option value="${f.id}">${safeText(f.nom)} - ${Number(f.prix_fcfa).toLocaleString("fr-FR")} FCFA</option>`
+  ).join("");
 
-  formations.forEach(f => {
-    const card = document.createElement("div");
-    card.className = "card";
+  el("formationSelect").innerHTML =
+    '<option value="">Choisir une formation</option>' + options;
 
-    card.appendChild(creerTexte("h3",f.nom));
-    card.appendChild(creerTexte("p",f.description));
-    const prix = creerTexte("div",
-      Number(f.prix_fcfa).toLocaleString("fr-FR") + " FCFA"
-    );
-    prix.className = "price";
-    card.appendChild(prix);
-
-    const bouton = creerTexte("button","Choisir cette formation");
-    bouton.onclick = () => {
-      select.value = String(f.id);
-      document.getElementById("compte").scrollIntoView({behavior:"smooth"});
-    };
-    card.appendChild(bouton);
-    zone.appendChild(card);
-
-    const option = document.createElement("option");
-    option.value = f.id;
-    option.textContent = f.nom;
-    select.appendChild(option);
-
-    const optionAdmin = document.createElement("option");
-    optionAdmin.value = f.id;
-    optionAdmin.textContent = f.nom;
-    selectAdmin.appendChild(optionAdmin);
-  });
+  el("courseFormation").innerHTML =
+    '<option value="">Choisir une formation</option>' + options;
 }
 
-/* CRÉATION DU COMPTE */
-document.getElementById("signupForm").addEventListener("submit",async e => {
-  e.preventDefault();
+async function verifierAdmin(){
+  if(!currentUser) return false;
 
-  const nom = document.getElementById("signupNom").value.trim();
-  const telephone = document.getElementById("signupTelephone").value.trim();
-  const email = document.getElementById("signupEmail").value.trim();
-  const password = document.getElementById("signupPassword").value;
+  const {data,error} = await db
+    .from("admins")
+    .select("role")
+    .eq("id",currentUser.id)
+    .maybeSingle();
+
+  if(error){
+    console.warn("Vérification administrateur :",error.message);
+    return false;
+  }
+
+  return !!data && data.role === "admin";
+}
+
+async function chargerSession(){
+  const {data,error} = await db.auth.getSession();
+
+  if(error){
+    console.error(error.message);
+    return;
+  }
+
+  currentUser = data.session?.user || null;
+
+  if(!currentUser){
+    show("authSection");
+    hide("accountSection");
+    hide("enrollmentSection");
+    hide("paymentSection");
+    hide("coursesSection");
+    hide("adminSection");
+    return;
+  }
+
+  hide("authSection");
+  show("accountSection");
+  show("enrollmentSection");
+  show("paymentSection");
+  show("coursesSection");
+
+  el("welcome").textContent = "Bienvenue, " +
+    (currentUser.user_metadata?.full_name || currentUser.email);
+
+  el("studentName").value =
+    currentUser.user_metadata?.full_name || "";
+
+  const admin = await verifierAdmin();
+
+  if(admin){
+    show("adminSection");
+    await chargerPaiementsAdmin();
+  }else{
+    hide("adminSection");
+  }
+
+  await chargerInscriptions();
+}
+
+el("signupForm").addEventListener("submit",async e=>{
+  e.preventDefault();
+  hideMessage("signupMessage");
+
+  const nom = el("signupName").value.trim();
+  const email = el("signupEmail").value.trim();
+  const password = el("signupPassword").value;
+
+  if(!nom || !email || password.length < 6){
+    message("signupMessage","Veuillez remplir correctement tous les champs.",true);
+    return;
+  }
+
+  const button = e.submitter;
+  if(button) button.disabled = true;
 
   const {data,error} = await db.auth.signUp({
     email,
     password,
     options:{
-      data:{
-        nom_complet:nom,
-        telephone:telephone
-      }
+      data:{full_name:nom}
     }
   });
 
-  if(error) {
-    afficherMessage("authMessage",error.message,"error");
+  if(button) button.disabled = false;
+
+  if(error){
+    message("signupMessage",error.message,true);
     return;
   }
 
-  if(data.session) {
-    afficherMessage("authMessage","Compte créé avec succès.","success");
+  if(data.session){
+    message("signupMessage","Compte créé avec succès. Vous êtes connecté.");
     await chargerSession();
-  } else {
-    afficherMessage(
-      "authMessage",
-      "Compte créé. Vérifie ton e-mail si une confirmation est demandée, puis connecte-toi.",
-      "success"
-    );
+  }else{
+    message("signupMessage","Compte créé. Consultez votre boîte e-mail pour confirmer votre adresse, puis connectez-vous.");
   }
 });
 
-/* CONNEXION */
-document.getElementById("loginForm").addEventListener("submit",async e => {
+el("loginForm").addEventListener("submit",async e=>{
   e.preventDefault();
+  hideMessage("loginMessage");
 
-  const email = document.getElementById("loginEmail").value.trim();
-  const password = document.getElementById("loginPassword").value;
+  const email = el("loginEmail").value.trim();
+  const password = el("loginPassword").value;
+
+  const button = e.submitter;
+  if(button) button.disabled = true;
 
   const {error} = await db.auth.signInWithPassword({email,password});
 
-  if(error) {
-    afficherMessage("authMessage",error.message,"error");
+  if(button) button.disabled = false;
+
+  if(error){
+    message("loginMessage",error.message,true);
     return;
   }
 
-  afficherMessage("authMessage","Connexion réussie.","success");
+  message("loginMessage","Connexion réussie.");
   await chargerSession();
 });
 
-/* DÉCONNEXION */
-document.getElementById("logoutBtn").addEventListener("click",async () => {
-  await db.auth.signOut();
-  location.reload();
+el("logoutButton").addEventListener("click",async()=>{
+  const {error} = await db.auth.signOut();
+
+  if(error){
+    alert(error.message);
+    return;
+  }
+
+  currentUser = null;
+  el("coursesList").innerHTML = "";
+  await chargerSession();
 });
 
-/* SESSION */
-async function chargerSession() {
-  const {data,error} = await db.auth.getSession();
+async function chargerInscriptions(){
+  if(!currentUser) return;
 
-  if(error) return;
+  const {data,error} = await db
+    .from("inscriptions")
+    .select("id,nom_eleve,telephone,statut,formation_id,created_at")
+    .order("created_at",{ascending:false});
 
-  currentUser = data.session?.user || null;
-
-  const espace = document.getElementById("espace");
-  const admin = document.getElementById("adminSection");
-  const logout = document.getElementById("logoutBtn");
-
-  if(!currentUser) {
-    espace.classList.add("hidden");
-    admin.classList.add("hidden");
-    logout.classList.add("hidden");
-    document.getElementById("signupForm").classList.remove("hidden");
-    document.getElementById("loginForm").classList.remove("hidden");
+  if(error){
+    console.error("Inscriptions :",error.message);
     return;
   }
 
-  espace.classList.remove("hidden");
-  logout.classList.remove("hidden");
-  document.getElementById("signupForm").classList.add("hidden");
-  document.getElementById("loginForm").classList.add("hidden");
+  inscriptions = data || [];
 
-  document.getElementById("welcome").textContent =
-    "Connecté avec : " + currentUser.email;
-
-  await chargerMesInscriptions();
-  await chargerMesPaiements();
-
-  const isAdmin = currentUser.app_metadata?.role === "admin";
-
-  if(isAdmin) {
-    admin.classList.remove("hidden");
-    await chargerAdministration();
-  } else {
-    admin.classList.add("hidden");
-  }
+  el("paymentEnrollment").innerHTML =
+    '<option value="">Choisir une inscription</option>' +
+    inscriptions.map(i => {
+      const f = formations.find(x => String(x.id) === String(i.formation_id));
+      return `<option value="${i.id}">${safeText(f?.nom || "Formation")} - ${safeText(i.statut || "En attente")}</option>`;
+    }).join("");
 }
 
-/* INSCRIPTION À UNE FORMATION */
-document.getElementById("enrollForm").addEventListener("submit",async e => {
+el("enrollmentForm").addEventListener("submit",async e=>{
   e.preventDefault();
+  hideMessage("enrollmentMessage");
 
-  if(!currentUser) {
-    afficherMessage("enrollMessage","Connecte-toi d'abord.","error");
+  if(!currentUser){
+    message("enrollmentMessage","Connectez-vous d'abord.",true);
     return;
   }
 
-  const nom = currentUser.user_metadata?.nom_complet || "";
-  const telephone = currentUser.user_metadata?.telephone || "";
-  const formationId = Number(
-    document.getElementById("formationChoisie").value
-  );
+  const nom = el("studentName").value.trim();
+  const telephone = el("studentPhone").value.trim();
+  const formationId = Number(el("formationSelect").value);
 
-  if(!nom || !telephone) {
-    afficherMessage(
-      "enrollMessage",
-      "Les informations de ton compte sont incomplètes. Contacte l'administrateur.",
-      "error"
-    );
+  if(!nom || !telephone || !formationId){
+    message("enrollmentMessage","Veuillez remplir tous les champs.",true);
     return;
   }
 
-  const {error} = await db.rpc("inscrire_eleve",{
+  const {data,error} = await db.rpc("inscrire_eleve",{
     p_nom_eleve:nom,
     p_telephone:telephone,
     p_formation_id:formationId
   });
 
-  if(error) {
-    afficherMessage("enrollMessage",error.message,"error");
+  if(error){
+    message("enrollmentMessage","Erreur d'inscription : " + error.message,true);
     return;
   }
 
-  afficherMessage(
-    "enrollMessage",
-    "Inscription enregistrée. Tu peux maintenant choisir ton moyen de paiement.",
-    "success"
-  );
+  message("enrollmentMessage","Votre inscription a été envoyée. Vous pouvez maintenant effectuer votre demande de paiement.");
 
-  await chargerMesInscriptions();
+  await chargerInscriptions();
+
+  if(data){
+    const result = Array.isArray(data) ? data[0] : data;
+    const id = result?.id || result?.inscription_id;
+    if(id) el("paymentEnrollment").value = id;
+  }
 });
 
-/* AFFICHER LES INSCRIPTIONS DE L'ÉLÈVE */
-async function chargerMesInscriptions() {
-  const zone = document.getElementById("mesInscriptions");
+el("paymentForm").addEventListener("submit",async e=>{
+  e.preventDefault();
+  hideMessage("paymentMessage");
 
-  const {data,error} = await db
-    .from("inscriptions")
-    .select("id,statut,formation_id,formations(nom,prix_fcfa)")
-    .order("created_at",{ascending:false});
+  const inscriptionId = Number(el("paymentEnrollment").value);
+  const methode = el("paymentMethod").value;
 
-  zone.innerHTML = "";
-
-  if(error) {
-    zone.textContent = error.message;
+  if(!inscriptionId || !methode){
+    message("paymentMessage","Choisissez une inscription et un moyen de paiement.",true);
     return;
   }
 
-  if(!data || data.length === 0) {
-    zone.textContent = "Tu n'as pas encore d'inscription.";
-    return;
-  }
-
-  for(const inscription of data) {
-    const div = document.createElement("div");
-    div.className = "item";
-
-    div.appendChild(creerTexte(
-      "h3",
-      inscription.formations?.nom || "Formation"
-    ));
-
-    div.appendChild(creerTexte(
-      "p",
-      "Statut de l'inscription : " + inscription.statut
-    ));
-
-    if(inscription.statut === "en_attente") {
-      const select = document.createElement("select");
-
-      const mtn = document.createElement("option");
-      mtn.value = "MTN_MOMO";
-      mtn.textContent = "MTN Mobile Money";
-
-      const moov = document.createElement("option");
-      moov.value = "MOOV_MONEY";
-      moov.textContent = "Moov Money";
-
-      select.append(mtn,moov);
-
-      const info = creerTexte(
-        "p",
-        "Choisis ton moyen de paiement. Effectue le transfert avec les coordonnées qui t'ont été communiquées. Aucun numéro de réception n'est affiché ici."
-      );
-
-      const bouton = creerTexte(
-        "button",
-        "Déclarer ma demande de paiement"
-      );
-
-      bouton.onclick = async () => {
-        bouton.disabled = true;
-
-        const {data:result,error:payError} = await db.rpc(
-          "creer_demande_paiement",
-          {
-            p_inscription_id:inscription.id,
-            p_methode:select.value
-          }
-        );
-
-        bouton.disabled = false;
-
-        if(payError) {
-          alert(payError.message);
-          return;
-        }
-
-        alert(
-          "Demande enregistrée pour " +
-          result.montant_fcfa +
-          " FCFA. Ton paiement reste en attente de vérification par l'administrateur. Aucun cours n'est encore accessible."
-        );
-
-        await chargerMesPaiements();
-        await chargerMesInscriptions();
-      };
-
-      div.append(info,select,bouton);
-    }
-
-    if(inscription.statut === "valide") {
-      const boutonCours = creerTexte("button","Accéder à mes cours");
-      boutonCours.onclick = () => chargerCours(inscription.formation_id);
-      div.appendChild(boutonCours);
-    }
-
-    zone.appendChild(div);
-  }
-}
-
-/* AFFICHER LES PAIEMENTS DE L'ÉLÈVE */
-async function chargerMesPaiements() {
-  const zone = document.getElementById("mesPaiements");
-
-  const {data,error} = await db
-    .from("paiements")
-    .select("id,montant_fcfa,methode,statut,reference_transaction")
-    .order("created_at",{ascending:false});
-
-  zone.innerHTML = "";
-
-  if(error) {
-    zone.textContent = error.message;
-    return;
-  }
-
-  if(!data || data.length === 0) {
-    zone.textContent = "Aucune demande de paiement.";
-    return;
-  }
-
-  data.forEach(p => {
-    const div = document.createElement("div");
-    div.className = "item";
-
-    div.appendChild(creerTexte(
-      "strong",
-      p.methode === "MTN_MOMO" ? "MTN MoMo" : "Moov Money"
-    ));
-
-    div.appendChild(creerTexte(
-      "p",
-      p.montant_fcfa + " FCFA — Statut : " + p.statut
-    ));
-
-    if(p.statut === "en_attente") {
-      div.appendChild(creerTexte(
-        "p",
-        "Nous attendons la vérification de ton paiement."
-      ));
-    }
-
-    if(p.statut === "confirme") {
-      div.appendChild(creerTexte(
-        "p",
-        "Paiement confirmé. Ton inscription peut être consultée dans ton espace."
-      ));
-    }
-
-    zone.appendChild(div);
+  const {data,error} = await db.rpc("creer_demande_paiement",{
+    p_inscription_id:inscriptionId,
+    p_methode:methode
   });
-}
 
-/* OUVRIR LES COURS */
-async function chargerCours(formationId) {
-  const zone = document.getElementById("mesCours");
-  zone.innerHTML = "Vérification de ton accès...";
+  if(error){
+    message("paymentMessage","Erreur : " + error.message,true);
+    return;
+  }
 
-  const {data:autorise,error:accessError} = await db.rpc(
+  message("paymentMessage","Votre demande de paiement a été enregistrée. Effectuez le transfert sur le numéro indiqué, puis attendez la vérification de l'administrateur.");
+});
+
+el("loadCourses").addEventListener("click",async()=>{
+  const formationId = Number(el("courseFormation").value);
+
+  if(!formationId){
+    el("coursesList").textContent = "Choisissez une formation.";
+    return;
+  }
+
+  const {data:access,error:accessError} = await db.rpc(
     "verifier_acces_formation",
     {p_formation_id:formationId}
   );
 
-  if(accessError || !autorise) {
-    zone.textContent =
-      "Accès refusé. Ton paiement et ton inscription doivent être validés.";
+  if(accessError){
+    el("coursesList").textContent = "Vérification impossible : " + accessError.message;
+    return;
+  }
+
+  if(access !== true){
+    el("coursesList").textContent = "Votre paiement n'a pas encore été validé pour cette formation.";
     return;
   }
 
@@ -626,153 +483,125 @@ async function chargerCours(formationId) {
     .eq("actif",true)
     .order("ordre");
 
-  zone.innerHTML = "";
-
-  if(error) {
-    zone.textContent = error.message;
+  if(error){
+    el("coursesList").textContent = "Erreur de chargement des cours : " + error.message;
     return;
   }
 
-  if(!data || data.length === 0) {
-    zone.textContent = "Les leçons de cette formation seront bientôt disponibles.";
+  el("coursesList").innerHTML = data?.length
+    ? data.map((c,index)=>`
+      <div class="course">
+        <h3>Leçon ${index+1} : ${safeText(c.titre)}</h3>
+        <p>${safeText(c.contenu).replace(/\n/g,"<br>")}</p>
+      </div>
+    `).join("")
+    : "Aucun cours disponible pour cette formation pour le moment.";
+});
+
+async function chargerPaiementsAdmin(){
+  if(!(await verifierAdmin())){
+    hide("adminSection");
     return;
   }
 
-  data.forEach(c => {
-    const div = document.createElement("div");
-    div.className = "card";
-
-    const titre = creerTexte("h3",c.ordre + ". " + c.titre);
-    const contenu = creerTexte("p",c.contenu);
-    contenu.style.whiteSpace = "pre-wrap";
-
-    div.append(titre,contenu);
-    zone.appendChild(div);
-  });
-}
-
-/* ESPACE ADMINISTRATEUR */
-async function chargerAdministration() {
-  if(!currentUser || currentUser.app_metadata?.role !== "admin") {
-    return;
-  }
-
-  await chargerAdminInscriptions();
-  await chargerAdminPaiements();
-}
-
-/* TOUTES LES INSCRIPTIONS */
-async function chargerAdminInscriptions() {
-  const zone = document.getElementById("adminInscriptions");
-
-  const {data,error} = await db
-    .from("inscriptions")
-    .select("id,nom_eleve,telephone,statut,formations(nom)")
-    .order("created_at",{ascending:false});
-
-  zone.innerHTML = "";
-
-  if(error) {
-    zone.textContent = error.message;
-    return;
-  }
-
-  if(!data || data.length === 0) {
-    zone.textContent = "Aucune inscription pour le moment.";
-    return;
-  }
-
-  data.forEach(i => {
-    const div = document.createElement("div");
-    div.className = "item";
-
-    div.appendChild(creerTexte(
-      "strong",
-      i.nom_eleve
-    ));
-
-    div.appendChild(creerTexte(
-      "p",
-      "Téléphone : " + i.telephone
-    ));
-
-    div.appendChild(creerTexte(
-      "p",
-      "Formation : " + (i.formations?.nom || "")
-    ));
-
-    div.appendChild(creerTexte(
-      "p",
-      "Statut : " + i.statut
-    ));
-
-    zone.appendChild(div);
-  });
-}
-
-/* TOUTES LES DEMANDES DE PAIEMENT */
-async function chargerAdminPaiements() {
-  const zone = document.getElementById("adminPaiements");
+  const zone = el("adminPayments");
+  zone.textContent = "Chargement des paiements...";
 
   const {data,error} = await db
     .from("paiements")
-    .select("id,inscription_id,montant_fcfa,methode,statut,reference_transaction")
+    .select("id,inscription_id,montant_fcfa,methode,statut,reference_transaction,created_at")
     .order("created_at",{ascending:false});
 
-  zone.innerHTML = "";
-
-  if(error) {
-    zone.textContent = error.message;
+  if(error){
+    zone.textContent = "Erreur : " + error.message;
     return;
   }
 
-  if(!data || data.length === 0) {
+  if(!data?.length){
     zone.textContent = "Aucune demande de paiement.";
     return;
   }
 
-  data.forEach(p => {
-    const div = document.createElement("div");
-    div.className = "item";
+  zone.innerHTML = "";
 
-    div.appendChild(creerTexte(
-      "strong",
-      "Demande de paiement #" + p.id
-    ));
+  for(const p of data){
+    const bloc = document.createElement("div");
+    bloc.className = "payment";
 
-    div.appendChild(creerTexte(
-      "p",
-      "Inscription #" + p.inscription_id
-    ));
+    const inscription = inscriptions.find(i =>
+      String(i.id) === String(p.inscription_id)
+    );
 
-    div.appendChild(creerTexte(
-      "p",
-      "Montant : " + p.montant_fcfa + " FCFA"
-    ));
+    bloc.innerHTML = `
+      <h3>Paiement numéro ${safeText(p.id)}</h3>
+      <p>Élève : ${safeText(inscription?.nom_eleve || "Non disponible")}</p>
+      <p>Téléphone : ${safeText(inscription?.telephone || "Non disponible")}</p>
+      <p>Montant : ${safeText(p.montant_fcfa)} FCFA</p>
+      <p>Moyen : ${safeText(p.methode)}</p>
+      <p>Statut : <strong>${safeText(p.statut)}</strong></p>
+    `;
 
-    div.appendChild(creerTexte(
-      "p",
-      "Moyen : " + (p.methode === "MTN_MOMO" ? "MTN MoMo" : "Moov Money")
-    ));
+    if(p.statut !== "valide"){
+      const input = document.createElement("input");
+      input.placeholder = "Référence de transaction";
+      input.id = "reference-" + p.id;
 
-    div.appendChild(creerTexte(
-      "p",
-      "Statut : " + p.statut
-    ));
+      const button = document.createElement("button");
+      button.textContent = "Valider après vérification";
+      button.onclick = ()=>validerPaiement(p.id);
 
-    if(p.statut === "en_attente") {
-      const bouton = creerTexte(
-        "button",
-        "Confirmer après réception réelle"
-      );
+      bloc.append(input,button);
+    }
 
-      bouton.onclick = async () => {
-        const confirmation = confirm(
-          "As-tu personnellement vérifié que les " +
-          p.montant_fcfa +
-          " FCFA sont bien arrivés sur ton compte ?"
-        );
+    zone.appendChild(bloc);
+  }
+}
 
-        if(!confirmation) return;
+async function validerPaiement(paiementId){
+  if(!(await verifierAdmin())){
+    alert("Accès administrateur refusé.");
+    return;
+  }
 
-        const refe
+  const reference = el("reference-" + paiementId)?.value.trim();
+
+  if(!reference){
+    alert("Saisissez la référence de transaction.");
+    return;
+  }
+
+  if(!confirm("Confirmez-vous avoir réellement reçu ce paiement ?")){
+    return;
+  }
+
+  const {error} = await db.rpc("admin_valider_paiement",{
+    p_paiement_id:paiementId,
+    p_reference:reference
+  });
+
+  if(error){
+    alert("Erreur : " + error.message);
+    return;
+  }
+
+  alert("Paiement validé.");
+  await chargerInscriptions();
+  await chargerPaiementsAdmin();
+}
+
+el("refreshAdmin").addEventListener("click",chargerPaiementsAdmin);
+
+db.auth.onAuthStateChange(()=>{
+  setTimeout(()=>chargerSession(),0);
+});
+
+async function demarrer(){
+  await chargerFormations();
+  await chargerSession();
+}
+
+demarrer();
+</script>
+</body>
+  </html>
+          
