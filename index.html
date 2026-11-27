@@ -750,25 +750,102 @@ window.activerCours = async (id,actif) => {
 };
 $("refreshCourses").addEventListener("click",chargerCoursAdmin);
 
-async function t$("adminQuestions").innerHTML = (data || []).map(q =>
-  `<article class="item">
-    <strong>Question n° ${esc(q.id)}</strong>
-    <p>${esc(q.question)}</p>
-    <p>Formation : ${esc(formationName(q.formation_id))}</p>
-    <label>Votre réponse</label>
-    <textarea id="answer-${q.id}">${esc(q.reponse || "")}</textarea>
-    <button onclick="repondreQuestion(${q.id})">
-      Enregistrer la réponse
-    </button>
-  </article>`
-).join("") || "Aucune question.";";
-  } catch(err) {
-    $("adminAccounts").textContent = err.message;
+
+async function chargerQuestionsAdmin() {
+  if (!isAdmin) return;
+
+  try {
+    adminOnly();
+
+    const { data, error } = await db
+      .from("questions")
+      .select("id,question,reponse,statut,formation_id,created_at")
+      .order("created_at", { ascending: false });
+
+    if (error) throw error;
+
+    $("adminQuestions").innerHTML = (data || []).map(q => `
+      <article class="item">
+        <strong>Question de l'élève</strong>
+        <p>${esc(q.question)}</p>
+        <p>Formation : ${esc(formationName(q.formation_id))}</p>
+        <p>Statut : ${esc(q.statut)}</p>
+        <label for="answer-${esc(q.id)}">Votre réponse</label>
+        <textarea id="answer-${esc(q.id)}">${esc(q.reponse || "")}</textarea>
+        <button onclick="repondreQuestion('${esc(q.id)}')">
+          Enregistrer la réponse
+        </button>
+      </article>
+    `).join("") || "Aucune question.";
+
+  } catch (err) {
+    $("adminQuestions").textContent =
+      "Erreur de chargement : " + err.message;
   }
 }
 
-$("refreshAdmins").addEventListener("click",chargerAdmins);
+window.repondreQuestion = async function(id) {
+  try {
+    adminOnly();
 
+    const reponse = $("answer-" + id).value.trim();
+
+    if (reponse.length < 1) {
+      alert("Veuillez saisir une réponse.");
+      return;
+    }
+
+    const { error } = await db
+      .from("questions")
+      .update({
+        reponse: reponse,
+        statut: "repondu",
+        repondu_par: currentUser.id,
+        repondu_le: new Date().toISOString()
+      })
+      .eq("id", id);
+
+    if (error) throw error;
+
+    alert("Réponse enregistrée avec succès.");
+    await chargerQuestionsAdmin();
+
+  } catch (err) {
+    alert("Erreur : " + err.message);
+  }
+};
+
+async function chargerAdmins() {
+  if (!isAdmin) return;
+
+  try {
+    adminOnly();
+
+    const { data, error } = await db
+      .from("admins")
+      .select("id,email,role,created_at")
+      .order("created_at", { ascending: false });
+
+    if (error) throw error;
+
+    $("adminAccounts").innerHTML = (data || []).map(a => `
+      <article class="item">
+        <strong>${esc(a.email)}</strong>
+        <p>Rôle : ${esc(a.role)}</p>
+      </article>
+    `).join("") || "Aucun administrateur trouvé.";
+
+  } catch (err) {
+    $("adminAccounts").textContent =
+      "Erreur de chargement : " + err.message;
+  }
+}
+
+$("refreshAdminQuestions").addEventListener(
+  "click", chargerQuestionsAdmin
+);
+$("refreshAdmins").addEventListener("click", chargerAdmins);
+    
 (async function initialiser() {
   if (!window.supabase) {
     document.body.textContent = "Erreur : bibliothèque Supabase indisponible.";
