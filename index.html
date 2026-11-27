@@ -750,58 +750,18 @@ window.activerCours = async (id,actif) => {
 };
 $("refreshCourses").addEventListener("click",chargerCoursAdmin);
 
-async function chargerQuestionsAdmin() {
-  try {
-    adminOnly();
-    const {data,error} = await db.from("questions")
-      .select("id,user_id,formation_id,cours_id,question,reponse,statut,created_at")
-      .order("created_at",{ascending:false});
-    if (error) throw error;
-    $("adminQuestions").innerHTML = (data || []).map(q =>
-      `<article class="item"><strong>Question n° ${esc(q.id)}</strong>
-      <p>${esc(q.question)}</p>
-      <p>Formation : ${esc(formationName(q.formation_id))}</p>
-      <label>Votre réponse</label>
-      <textarea id="answer-${q.id}">${esc(q.reponse || "")}</textarea>
-      <button onclick="repondreQuestion(${q.id})">Enregistrer la réponse</button></article>`
-    ).join("") || "Aucune que
-stion.";
-  } catch(err) { $("adminQuestions").textContent = err.message; }
-}
-
-window.repondreQuestion = async id => {
-  try {
-    adminOnly();
-    const reponse = $("answer-"+id).value.trim();
-    if (!reponse) return alert("Écrivez une réponse.");
-    const {error} = await db.from("questions").update({
-      reponse,
-      statut:"repondu",
-      repondu_par:currentUser.id,
-      repondu_le:new Date().toISOString()
-    }).eq("id",id);
-    if (error) throw error;
-    alert("Réponse enregistrée.");
-    await chargerQuestionsAdmin();
-  } catch(err) { alert(err.message); }
-};
-
-$("refreshAdminQuestions").addEventListener("click",chargerQuestionsAdmin);
-
-async function chargerAdmins() {
-  try {
-    adminOnly();
-    const {data,error} = await db.from("admins")
-      .select("id,email,role,created_at")
-      .order("created_at");
-    if (error) throw error;
-
-    $("adminAccounts").innerHTML = (data || []).map(a =>
-      `<article class="item">
-        <strong>${esc(a.email)}</strong>
-        <p>Rôle : ${esc(a.role)}</p>
-      </article>`
-    ).join("") || "Aucun administrateur trouvé.";
+async function t$("adminQuestions").innerHTML = (data || []).map(q =>
+  `<article class="item">
+    <strong>Question n° ${esc(q.id)}</strong>
+    <p>${esc(q.question)}</p>
+    <p>Formation : ${esc(formationName(q.formation_id))}</p>
+    <label>Votre réponse</label>
+    <textarea id="answer-${q.id}">${esc(q.reponse || "")}</textarea>
+    <button onclick="repondreQuestion(${q.id})">
+      Enregistrer la réponse
+    </button>
+  </article>`
+).join("") || "Aucune question.";";
   } catch(err) {
     $("adminAccounts").textContent = err.message;
   }
